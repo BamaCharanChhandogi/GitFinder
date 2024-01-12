@@ -9,10 +9,10 @@ function CreatePost(props) {
       alert("Please enter something");
     } else {
       db.collection("posts").add({
-        // logo: props.avatar,
-        // name: props.name,
-        // usernames: props.login,
-        // bio: props.bio,
+        logo: props.avatar,
+        name: props.name,
+        usernames: props.login,
+        bio: props.bio,
         like: 0,
         likeBy: [],
         commentCnt: 0,

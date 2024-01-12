@@ -6,14 +6,13 @@ import { HiLink } from "react-icons/hi";
 import { MdOutlineDelete } from "react-icons/md";
 import db from "../../firebase";
 import firebase from "firebase/compat/app";
-// import CommentModal from "./CommentModal";
 
 function Post(props) {
     const [like, setLike] = useState(false);
-    const [likeCount, setLikeCount] = useState(props.like);
-    const [comnt, setComment] = useState(false);
-    const [commentValue, setCommentValue] = useState("");
-    const [showModal, setShowModal] = useState(false);
+    // const [likeCount, setLikeCount] = useState(props.like);
+    // const [comnt, setComment] = useState(false);
+    // const [commentValue, setCommentValue] = useState("");
+    // const [showModal, setShowModal] = useState(false);
 
     const cookie = document.cookie;
     
