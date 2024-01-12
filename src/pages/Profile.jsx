@@ -5,8 +5,8 @@ import { BsFolder2Open } from "react-icons/bs";
 import { VscLoading } from "react-icons/vsc";
 import firebase from "firebase/compat/app";
 import { useNavigate } from "react-router-dom";
-// import RepoInfo from "../components/RepoInfo";
-// import Post from "../components/posts/Post";
+import RepoInfo from "../Components/RepoInfo";
+import Post from "../Components/post/Post";
 import db from "../firebase";
 // import useProtectedRoute from "../hooks/useProtectedRoute";
 import { FiLink } from "react-icons/fi";
@@ -43,7 +43,6 @@ export default function Profile(props) {
     const response = await fetch(`https://api.github.com/users/${cookie}`);
     const data = await response.json();
     console.log(data);
-    console.log(cookie);
     return setUserData(data);
   };
   useEffect(() => {
@@ -83,7 +82,7 @@ export default function Profile(props) {
   return (
     <>
       <div className="flex flex-col md:justify-center md:flex-row bg-[#1B2430] font-inter h-auto min-h-screen bg-cover md:px-40">
-        <Sidebar />
+        <Sidebar/>
         <div className="bg-black font-manrope tracking-wide bg-opacity-20 w-full h-full min-h-screen md:w-4/6 md:rounded-2xl p-5 md:mt-3 mx-auto md:mx-0 md:ml-56 text-slate-100">
           <h1 className="text-2xl font-semibold w-3/12 flex justify-center">
             Profile
@@ -248,39 +247,37 @@ export default function Profile(props) {
                       },
                     }) => {
                       return (
-                        <></>
-                        // <Post
-                        //   key={id}
-                        //   id={id}
-                        //   logo={logo}
-                        //   name={name}
-                        //   username={username}
-                        //   like={like}
-                        //   likedBy={likedBy}
-                        //   commentCnt={commentCnt}
-                        //   commentObj={commentObj}
-                        //   bio={bio}
-                        //   description={description}
-                        //   image={image}
-                        //   githubLink={githubLink}
-                        //   liveLink={liveLink}
-                        //   width={"5/6"}
-                        // />
+                        <Post
+                          key={id}
+                          id={id}
+                          logo={logo}
+                          name={name}
+                          username={username}
+                          like={like}
+                          likedBy={likedBy}
+                          commentCnt={commentCnt}
+                          commentObj={commentObj}
+                          bio={bio}
+                          description={description}
+                          image={image}
+                          githubLink={githubLink}
+                          liveLink={liveLink}
+                          width={"5/6"}
+                        />
                       );
                     }
                   )
                 : repo.map((repos) => (
-                  <></>
-                    // <RepoInfo
-                    //   key={repos.id}
-                    //   name={repos.name}
-                    //   desc={repos.description}
-                    //   url={repos.html_url}
-                    //   star_count={repos.stargazers_count}
-                    //   forks_count={repos.forks_count}
-                    //   language={repos.language}
-                    //   clone_url={repos.clone_url}
-                    // />
+                    <RepoInfo
+                      key={repos.id}
+                      name={repos.name}
+                      desc={repos.description}
+                      url={repos.html_url}
+                      star_count={repos.stargazers_count}
+                      forks_count={repos.forks_count}
+                      language={repos.language}
+                      clone_url={repos.clone_url}
+                    />
                   ))}
               <div className="mt-10"></div>
             </>
