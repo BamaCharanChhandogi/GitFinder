@@ -4,6 +4,7 @@ import { BsCodeSlash } from "react-icons/bs";
 import { AiOutlineCode } from "react-icons/ai";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { BiGitRepoForked } from "react-icons/bi";
+
 export default function RepoInfo(props) {
   return (
     <>

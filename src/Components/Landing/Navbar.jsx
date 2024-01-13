@@ -1,4 +1,4 @@
-// import logo from "../../assets/logo1.png";
+import logo from "../../assets/logo.png";
 import { FiGithub } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
@@ -15,13 +15,13 @@ export default function Navbar(props) {
   ];
   const [open, setOpen] = useState(false);
   return (
-    <nav className="flex px-2 items-center justify-between md:justify-around h-20 md:h-28 bg-slate-900 bg-opacity-30 backdrop-blur-lg drop-shadow-2xl md:mb-20 z-50 fixed w-full">
+    <nav className="flex px-2 items-center justify-between md:justify-around h-20 md:h-28 bg-slate-900 bg-opacity-30 backdrop-blur-lg drop-shadow-2xl md:mb-10 z-50 w-full">
       <div className="w-2/12 h-full md:w-4/6 flex justify-start font-manrope items-center">
         <div className="md:p-0 md:w-2/12 w-11/12 md:flex content-center items-center">
           <a href="/">
             <img
-              className="md:w-28 md:h-28 md:p-4 p-1 h-16 w-16"
-              src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"
+              className="md:w-20 md:h-20 md:p-4 p-1 h-16 w-16 bg-slate-200 rounded-2xl"
+              src={logo}
               alt="Gitshow logo"
             ></img>
           </a>

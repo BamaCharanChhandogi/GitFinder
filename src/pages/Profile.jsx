@@ -12,8 +12,15 @@ import { FiLink } from "react-icons/fi";
 import Github from "../Components/Github";
 
 export default function Profile() {
-  // useProtectedRoute();
   const navigate = useNavigate();
+  const [userData, setUserData] = useState([]);
+  const [repo, setRepo] = useState([]);
+  const [content, setContent] = useState("repo");
+  const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const cookie = document.cookie;
 
   function githubSignout() {
     document.cookie = "";
@@ -30,31 +37,27 @@ export default function Profile() {
         }
       );
   }
-  const [userData, setUserData] = useState([]);
-  const [repo, setRepo] = useState([]);
-  const [content, setContent] = useState("post");
-  const [post, setPost] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const cookie = document.cookie;
-
   const fetchData = async () => {
     try {
-      const response = await fetch(`https://api.github.com/users/${cookie}`);
+      const accessToken = "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";
+      const endpoint = `https://api.github.com/users/${cookie}`;
+      const response = await fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return setUserData(data);
-    }
-    catch (error) {
+    } catch (error) {
       if (error.response && error.response.status === 403) {
-        const resetTime = parseInt(error.response.headers["x-ratelimit-reset"], 10);
+        const resetTime = parseInt(
+          error.response.headers["x-ratelimit-reset"],
+          10
+        );
         const currentTime = Math.floor(Date.now() / 1000);
         const sleepTime = resetTime - currentTime;
-
         console.log(`Rate limit exceeded. Sleeping for ${sleepTime} seconds.`);
-
         await new Promise((resolve) => setTimeout(resolve, sleepTime * 1000));
-
         await fetchData();
       } else {
         setError(error.message);
@@ -86,22 +89,25 @@ export default function Profile() {
 
   const fetchDataRepo = async () => {
     try {
-      const response = await fetch(
-        `https://api.github.com/users/${cookie}/repos`
-      );
+      const accessToken = "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";
+      const endpoint = `https://api.github.com/users/${cookie}/repos`;
+      const response = await fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       const data = await response.json();
       return setRepo(data);
-    }
-    catch (error) {
+    } catch (error) {
       if (error.response && error.response.status === 403) {
-        const resetTime = parseInt(error.response.headers["x-ratelimit-reset"], 10);
+        const resetTime = parseInt(
+          error.response.headers["x-ratelimit-reset"],
+          10
+        );
         const currentTime = Math.floor(Date.now() / 1000);
         const sleepTime = resetTime - currentTime;
-
         console.log(`Rate limit exceeded. Sleeping for ${sleepTime} seconds.`);
-
         await new Promise((resolve) => setTimeout(resolve, sleepTime * 1000));
-
         await fetchDataRepo();
       } else {
         setError(error.message);
@@ -241,71 +247,75 @@ export default function Profile() {
               <div className="mt-4 md:mt-10 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
               <div className="flex w-full md:w-4/5 mx-auto justify-around md:mt-3">
                 <div
-                  className={`flex items-center p-2 cursor-pointer hover:text-slate-300 ${content === "post" && "border-b-[1px] border-white"
-                    }`}
+                  className={`flex items-center p-2 cursor-pointer hover:text-slate-300 ${
+                    content === "post" && "border-b-[1px] border-white"
+                  }`}
                   onClick={() => setContent("post")}
                 >
                   <MdGridOn className="text-2xl md:text-lg md:mx-2 md:mt-0 mt-2.5" />
                   <span className="hidden md:block">Posts</span>
                 </div>
                 <div
-                  className={`flex items-center p-2 cursor-pointer hover:text-slate-300 ${content === "repo" && "border-b-[1px] border-white"
-                    }`}
+                  className={`flex items-center p-2 cursor-pointer hover:text-slate-300 ${
+                    content === "repo" && "border-b-[1px] border-white"
+                  }`}
                   onClick={() => setContent("repo")}
                 >
                   <BsFolder2Open className="text-2xl md:text-lg md:mx-2 md:mt-0 mt-2.5" />
                   <span className="hidden md:block">Repositories </span>
                 </div>
               </div>
-              {(content === "post" && post.length) !== 0 ? (
-                ""
-              ) : (
-                'You have not created any posts yet.'
-              )}
+              {(content === "post" && post.length) !== 0
+                ? ""
+                : "You have not created any posts yet."}
               {content === "post"
                 ? post.map(
-                  ({
-                    id,
-                    data: {
-                      logo,
-                      name,
-                      username,
-                      bio,
-                      like,
-                      likedBy,
-                      commentCnt,
-                      commentObj,
-                      description,
-                    },
-                  }) => {
-                    return (
-                      <Post
-                        key={id}
-                        logo={logo}
-                        name={name}
-                        username={username}
-                        like={like}
-                        likedBy={likedBy}
-                        commentCnt={commentCnt}
-                        commentObj={commentObj}
-                        bio={bio}
-                        description={description}
+                    ({
+                      id,
+                      data: {
+                        logo,
+                        name,
+                        username,
+                        bio,
+                        like,
+                        likedBy,
+                        commentCnt,
+                        commentObj,
+                        description,
+                      },
+                    }) => {
+                      return (
+                        <Post
+                          key={id}
+                          logo={logo}
+                          name={name}
+                          username={username}
+                          like={like}
+                          likedBy={likedBy}
+                          commentCnt={commentCnt}
+                          commentObj={commentObj}
+                          bio={bio}
+                          description={description}
+                        />
+                      );
+                    }
+                  )
+                : repo.map((repos) =>
+                    repos.fork ? (
+                      ""
+                    ) : (
+                      <RepoInfo
+                        key={repos.id}
+                        name={repos.name}
+                        desc={repos.description}
+                        url={repos.html_url}
+                        star_count={repos.stargazers_count}
+                        forks_count={repos.forks_count}
+                        language={repos.language}
+                        clone_url={repos.clone_url}
                       />
-                    );
-                  }
-                )
-                : repo.map((repos) => (
-                  repos.fork ? '' : <RepoInfo
-                    key={repos.id}
-                    name={repos.name}
-                    desc={repos.description}
-                    url={repos.html_url}
-                    star_count={repos.stargazers_count}
-                    forks_count={repos.forks_count}
-                    language={repos.language}
-                    clone_url={repos.clone_url}
-                  />
-                ))}
+                    )
+                  )}
               <div className="mt-10"></div>
             </>
           )}

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import db from "../../firebase";
 import firebase from "firebase/compat/app";
+
 function CreatePost(props) {
   const [input, setInput] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input == "") {
