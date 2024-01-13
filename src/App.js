@@ -7,17 +7,10 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import Message from "./pages/Message";
-import { useEffect } from "react";
 
 export default function App() {
   let githubUsername;
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (document.cookie) {
-      navigate("/home");
-    }
-  });
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
