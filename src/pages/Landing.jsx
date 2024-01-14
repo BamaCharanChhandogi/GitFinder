@@ -10,7 +10,7 @@ export default function Landing(props) {
   }, []);
   return (
     <>
-      <div className="bg-[#1B2430] font-inter h-screen bg-cover">
+      <div className="bg-[#1B2430] font-inter min-h-screen bg-cover">
         <Navbar authenticateUser={props.authenticateUser} />
         <Hero authenticateUser={props.authenticateUser} />
         <Footer />

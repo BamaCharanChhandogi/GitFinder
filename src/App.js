@@ -7,6 +7,8 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import Message from "./pages/Message";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 export default function App() {
   let githubUsername;
@@ -38,6 +40,8 @@ export default function App() {
         <Route path="/messages" element={<Message />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );

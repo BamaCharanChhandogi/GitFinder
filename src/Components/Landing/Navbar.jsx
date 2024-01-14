@@ -10,8 +10,8 @@ export default function Navbar(props) {
   let Links = [
     { name: "Features", link: featureLink },
     { name: "Users", link: peopleLink },
-    { name: "Support", link: "/contact" },
-    { name: "Blog", link: "/blog" },
+    { name: "Contact", link: "/contact" },
+    { name: "About", link: "/about" },
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -20,7 +20,7 @@ export default function Navbar(props) {
         <div className="md:p-0 md:w-2/12 w-11/12 md:flex content-center items-center">
           <a href="/">
             <img
-              className="md:w-20 md:h-20 md:p-4 p-1 h-16 w-16 bg-slate-200 rounded-2xl"
+              className="md:w-20 md:h-20  h-16 w-16 bg-slate-200 rounded-full"
               src={logo}
               alt="Gitshow logo"
             ></img>

@@ -24,5 +24,5 @@ const storage = firebase.storage();
 const db = firebaseApp.firestore();
 const Rdb = firebaseApp.database();
 
-export { auth, provider, storage };
+export { auth, provider, storage,Rdb };
 export default db;
