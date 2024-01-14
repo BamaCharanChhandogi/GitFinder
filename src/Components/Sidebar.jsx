@@ -36,7 +36,7 @@ export default function Sidebar() {
         <li className="md:flex hidden">
           <div className="flex items-center">
             <img
-              className="w-1/6 md:w-3/6 md:ml-5 mt-4 bg-slate-600 rounded-full"
+              className="w-1/6 md:w-3/6 md:ml-5 mt-4 bg-slate-600 rounded-full border-[2px] border-pink-500"
               src={logo}
               alt="Gitshow logo"
             ></img>
@@ -47,8 +47,8 @@ export default function Sidebar() {
             <div
               className={`flex ${
                 active === "home"
-                  ? "text-purple-400 bg-black rounded-lg"
-                  : "hover:text-purple-400 hover:bg-black hover:rounded-lg"
+                  ? "text-pink-500 bg-black rounded-lg"
+                  : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
               <TiHomeOutline className="md:m-2 m-auto" />
@@ -61,8 +61,8 @@ export default function Sidebar() {
             <div
               className={`flex ${
                 active === "explore"
-                  ? "text-purple-400 bg-black rounded-lg"
-                  : "hover:text-purple-400 hover:bg-black hover:rounded-lg"
+                  ? "text-pink-500 bg-black rounded-lg"
+                  : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
               <BiSearchAlt className="md:m-2 m-auto" />
@@ -75,8 +75,8 @@ export default function Sidebar() {
             <div
               className={`flex ${
                 active === "notifications"
-                  ? "text-purple-400 bg-black rounded-lg"
-                  : "hover:text-purple-400 hover:bg-black hover:rounded-lg"
+                  ? "text-pink-500 bg-black rounded-lg"
+                  : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
               <FiBell className="m-auto md:m-2" />
@@ -89,8 +89,8 @@ export default function Sidebar() {
             <div
               className={`flex ${
                 active === "messages"
-                  ? "text-purple-400 bg-black rounded-lg"
-                  : "hover:text-purple-400 hover:bg-black hover:rounded-lg"
+                  ? "text-pink-500 bg-black rounded-lg"
+                  : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
               <FiMessageSquare className="m-auto md:m-2" />
@@ -103,8 +103,8 @@ export default function Sidebar() {
             <div
               className={`flex ${
                 active === "profile"
-                  ? "text-purple-400 bg-black rounded-lg"
-                  : "hover:text-purple-400 hover:bg-black hover:rounded-lg"
+                  ? "text-pink-500 bg-black rounded-lg"
+                  : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
               <FiUser className="m-auto md:m-2" />

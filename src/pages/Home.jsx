@@ -78,6 +78,7 @@ export default function Home() {
                 return (
                   <Post
                     key={id}
+                    id={id}
                     logo={logo}
                     name={name}
                     username={usernames}

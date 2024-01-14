@@ -33,7 +33,7 @@ export default function Navbar(props) {
           {open ? <RxCross1 /> : <HiMenuAlt3 />}
         </div>
         <ul
-          className={`md:flex md:justify-end md:bg-none  text-slate-200 md:items-center  md:text-lg text-xl md:pb-0 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 transition-all duration-1000 ease-in-out tracking-wider ${
+          className={`md:flex md:justify-end md:bg-none text-slate-200 md:items-center md:text-lg text-xl md:pb-0 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 transition-all duration-1000 ease-in-out tracking-wider ${
             open ? "top-16 bg-[#141a23] h-auto" : "top-[-490px] bg-transparent"
           } md:opacity-100 rounded-lg`}
         >

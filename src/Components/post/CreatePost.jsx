@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import db from "../../firebase";
 import firebase from "firebase/compat/app";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost(props) {
   const [input, setInput] = useState("");
 
+  const navigate=useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input == "") {
@@ -29,7 +31,7 @@ function CreatePost(props) {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="w-full h-auto bg-black bg-opacity-20 backdrop-blur-lg rounded-2xl px-4 py-2 flex flex-col"
+        className="w-full h-auto bg-black bg-opacity-20 rounded-2xl px-4 py-2 flex flex-col"
       >
         <h1>Home</h1>
         <div>
@@ -37,7 +39,8 @@ function CreatePost(props) {
             <img
               src={props.avatar}
               alt="user"
-              className="w-12 h-12 rounded-[50%]"
+              className="w-12 h-12 rounded-[50%] cursor-pointer"
+              onClick={()=>navigate("/profile")}
             />
 
             <textarea
@@ -52,7 +55,7 @@ function CreatePost(props) {
           <div className="flex w-full justify-end items-center">
             <button
               type="submit"
-              className="bg-black p-2 mx-3 bg-opacity-80 rounded-s-lg text-pink-500 hover:text-pink-600 hover:bg-opacity-100 font-bold"
+              className="bg-black p-2 mx-3 rounded-s-lg text-pink-500 hover:text-pink-400"
             >
               Post
             </button>

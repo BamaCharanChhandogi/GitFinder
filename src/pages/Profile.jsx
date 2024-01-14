@@ -265,9 +265,15 @@ export default function Profile() {
                   <span className="hidden md:block">Repositories </span>
                 </div>
               </div>
-              {(content === "post" && post.length) !== 0
-                ? ""
-                : "You have not created any posts yet."}
+              {(content === "post" && post.length) !== 0 ? (
+                ""
+              ) : (
+                <>
+                  <div className="mt-10 text-center text-2xl text-bold text-pink-500">
+                    You have not created any post yet.
+                  </div>
+                </>
+              )}
               {content === "post"
                 ? post.map(
                     ({
