@@ -36,9 +36,10 @@ export default function Sidebar() {
         <li className="md:flex hidden">
           <div className="flex items-center">
             <img
-              className="w-1/6 md:w-3/6 md:ml-5 mt-4 bg-slate-600 rounded-full border-[2px] border-pink-500"
+              className="w-1/6 md:w-3/6 md:ml-5 mt-4 bg-slate-600 cursor-pointer rounded-full border-[2px] border-pink-500"
               src={logo}
               alt="Gitshow logo"
+              onClick={()=>navigate("/home")}
             ></img>
           </div>
         </li>
