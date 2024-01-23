@@ -9,6 +9,7 @@ import Notifications from "./pages/Notifications";
 import Message from "./pages/Message";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   let githubUsername;
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/profile/:username" element={<ProfilePage />} />
       </Routes>
     </div>
   );

@@ -4,6 +4,7 @@ import { BiHeart } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import db from "../../firebase";
+import { Link } from "react-router-dom";
 
 function Post(props) {
   const [like, setLike] = useState(false);
@@ -46,9 +47,23 @@ function Post(props) {
             <h4 className="mr-2 text-sm">{props.name}</h4>
             <p className="text-slate-400 md:text-sm text-xs font-manrope">
               (@
-              <a href={`https://github.com/${props.username}`} className="">
-                {props.username}
-              </a>
+              {props.username == cookie ? (
+                <Link
+                  to="/profile"
+                  target="_blank"
+                  className="text-slate-300 text-xs"
+                >
+                  {props.username}
+                </Link>
+              ) : (
+                <Link
+                  to={`/profile/${props.username}`}
+                  className="text-slate-300 text-xs"
+                  target="_blank"
+                >
+                  {props.username}
+                </Link>
+              )}
               )
             </p>
           </div>

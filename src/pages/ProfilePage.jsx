@@ -3,43 +3,26 @@ import Sidebar from "../Components/Sidebar";
 import { MdGridOn } from "react-icons/md";
 import { BsFolder2Open } from "react-icons/bs";
 import { VscLoading } from "react-icons/vsc";
-import firebase from "firebase/compat/app";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import RepoInfo from "../Components/RepoInfo";
 import Post from "../Components/post/Post";
 import db from "../firebase";
 import { FiLink } from "react-icons/fi";
 import Github from "../Components/Github";
 
-export default function Profile() {
-  const navigate = useNavigate();
+export default function ProfilePage() {
   const [userData, setUserData] = useState([]);
   const [repo, setRepo] = useState([]);
   const [content, setContent] = useState("repo");
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const cookie = document.cookie;
+  const { username } = useParams();
 
-  function githubSignout() {
-    document.cookie = "";
-    firebase
-      .auth()
-      .signOut()
-      .then(
-        function () {
-          console.log("Signout successful!");
-          navigate("/");
-        },
-        function (error) {
-          console.log("Signout failed");
-        }
-      );
-  }
   const fetchData = async () => {
     try {
       const accessToken = "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";
-      const endpoint = `https://api.github.com/users/${cookie}`;
+      const endpoint = `https://api.github.com/users/${username}`;
       const response = await fetch(endpoint, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -73,19 +56,46 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    db.collection('posts').where('usernames', '==', cookie).orderBy("timestamp", "desc").onSnapshot(snapshot => {
-      // console.log(snapshot.docs.map(doc => doc.data()))
-      setPost(snapshot.docs.map((doc)=>{
-          return {id: doc.id, data: doc.data()}
-      }));
-  });
+    // const fetchData = async () => {
+    //   try {
+    //     const snapshot = await db.collection('posts').where('usernames', '==', username).onSnapshot(snapshot => {
+    //         // console.log(snapshot.docs.map(doc => doc.data()))
+    //         setPost(snapshot.docs.map((doc)=>{
+    //             return {id: doc.id, data: doc.data()}
+    //         }));
+    //     });
 
-  }, []);
+    //     if (snapshot.empty) {
+    //       console.log('No matching documents.');
+    //       return;
+    //     }
+
+    //     // Assuming username is unique, so there should be only one document
+    //     // const user = snapshot.docs[0].data();
+    //     // console.log(user);
+    //     // setPost(user);
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //   }
+    // };
+
+    // fetchData();
+    db.collection("posts")
+      .where("usernames", "==", username)
+      .onSnapshot((snapshot) => {
+        // console.log(snapshot.docs.map(doc => doc.data()))
+        setPost(
+          snapshot.docs.map((doc) => {
+            return { id: doc.id, data: doc.data() };
+          })
+        );
+      });
+  }, [username]);
 
   const fetchDataRepo = async () => {
     try {
       const accessToken = "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";
-      const endpoint = `https://api.github.com/users/${cookie}/repos`;
+      const endpoint = `https://api.github.com/users/${username}/repos`;
       const response = await fetch(endpoint, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -118,9 +128,13 @@ export default function Profile() {
       <div className="flex flex-col md:justify-center md:flex-row bg-[#1B2430] font-inter h-auto min-h-screen bg-cover md:px-40">
         <Sidebar />
         <div className="bg-black font-manrope tracking-wide bg-opacity-20 w-full h-full min-h-screen md:w-4/6 md:rounded-2xl p-5 md:mt-3 mx-auto md:mx-0 md:ml-56 text-slate-100">
-          <h1 className="text-2xl font-semibold w-3/12 flex justify-center">
-            Profile
-          </h1>
+          {userData.name ? (
+            <h1 className="text-2xl font-semibold border-b-2 rounded border-pink-500 w-6/12 flex justify-center">
+              {`Profile of ${userData.name}`}
+            </h1>
+          ) : (
+            ""
+          )}
           {loading ? (
             <div className="w-full flex justify-center items-center animate-spin h-screen">
               <VscLoading className="w-8 h-8" />
@@ -136,10 +150,10 @@ export default function Profile() {
                       className="w-40 h-40 rounded-full m-6"
                     />
                     <button
-                      onClick={githubSignout}
-                      className="bg-red-600 bg-opacity-80 text-white-400 hover:bg-opacity-100 hover:text-purple-500 p-3 rounded-lg w-4/6 m-auto hidden md:block"
+                      //   onClick={githubSignout}
+                      className="bg-pink-700 bg-opacity-80 text-white-400 hover:bg-opacity-100 p-3 rounded-lg w-3/6 m-auto hidden md:block"
                     >
-                      Log Out{" "}
+                      Follow{" "}
                     </button>
                   </div>
                   <div className="flex flex-col ml-8 md:ml-20 w-4/6">
@@ -162,7 +176,7 @@ export default function Profile() {
                         )
                       </div>
                       <button
-                        onClick={githubSignout}
+                        // onClick={githubSignout}
                         className="bg-black bg-opacity-50 hover:bg-opacity-100 text-purple-500 p-2  mt-4 rounded-lg w-3/5 block md:hidden"
                       >
                         Log Out{" "}
@@ -238,7 +252,7 @@ export default function Profile() {
                 </span>
               </div>
               <div className="mt-4 md:mt-20 mb-6 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
-              <Github username={cookie} />
+              <Github username={username} />
               <div className="mt-4 md:mt-10 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
               <div className="flex w-full md:w-4/5 mx-auto justify-around md:mt-3">
                 <div
