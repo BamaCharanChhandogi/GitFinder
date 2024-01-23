@@ -13,6 +13,13 @@ import About from "./pages/About";
 export default function App() {
   let githubUsername;
   const navigate = useNavigate();
+  //delete document.cookie
+  function delete_cookie(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+  if (document.cookie.length > 19) {
+    delete_cookie("_xsrf");
+  }
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
