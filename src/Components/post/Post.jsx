@@ -4,6 +4,7 @@ import { BiHeart } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import db from "../../firebase";
+import {useNavigate} from 'react-router-dom'
 import { Link } from "react-router-dom";
 
 function Post(props) {
@@ -11,6 +12,7 @@ function Post(props) {
   const [likeCount, setLikeCount] = useState(props.like);
   const [showDropdown, setShowDropdown] = useState(false);
   const cookie = document.cookie;
+  const navigate = useNavigate();
 
   const handleEdit = () => {
     setShowDropdown(!showDropdown);
@@ -41,16 +43,15 @@ function Post(props) {
       className={`bg-black font-manrope tracking-wide bg-opacity-20 w-full md:w-${props.width} rounded-2xl p-4 mt-4 md:mt-6 md:mx-auto text-slate-100 `}
     >
       <div className="w-full flex items-center">
-        <img src={props.logo} alt="user" className="w-12 h-12 rounded-[50%]" />
+        <img src={props.logo} alt="user" onClick={()=>{navigate(`/profile/${props.username}`)}} className="w-12 h-12 rounded-[50%] cursor-pointer" />
         <div className="w-9/12 flex flex-col">
           <div className="md:flex items-center ml-4">
-            <h4 className="mr-2 text-sm">{props.name}</h4>
+            <h4 className="mr-2 text-sm cursor-pointer" onClick={()=>{navigate(`/profile/${props.username}`)}}>{props.name}</h4>
             <p className="text-slate-400 md:text-sm text-xs font-manrope">
               (@
               {props.username == cookie ? (
                 <Link
                   to="/profile"
-                  target="_blank"
                   className="text-slate-300 text-xs"
                 >
                   {props.username}
