@@ -4,7 +4,7 @@ import { BiHeart } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import db from "../../firebase";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Post(props) {
@@ -43,24 +43,45 @@ function Post(props) {
       className={`bg-black font-manrope tracking-wide bg-opacity-20 w-full md:w-${props.width} rounded-2xl p-4 mt-4 md:mt-6 md:mx-auto text-slate-100 `}
     >
       <div className="w-full flex items-center">
-        <img src={props.logo} alt="user" onClick={()=>{navigate(`/profile/${props.username}`)}} className="w-12 h-12 rounded-[50%] cursor-pointer" />
+        {props.username == cookie ? (
+          <Link to="/profile">
+            {" "}
+            <img
+              src={props.logo}
+              alt="user"
+              className="w-12 h-12 rounded-[50%] cursor-pointer"
+            />{" "}
+          </Link>
+        ) : (
+          <Link to={`/profile/${props.username}`}>
+            <img
+              src={props.logo}
+              alt="user"
+              className="w-12 h-12 rounded-[50%] cursor-pointer"
+            />
+          </Link>
+        )}
         <div className="w-9/12 flex flex-col">
           <div className="md:flex items-center ml-4">
-            <h4 className="mr-2 text-sm cursor-pointer" onClick={()=>{navigate(`/profile/${props.username}`)}}>{props.name}</h4>
+            {props.username == cookie ? (
+              <Link to={"/profile"}>
+                <h4 className="mr-2 text-sm cursor-pointer">{props.name}</h4>
+              </Link>
+            ) : (
+              <Link to={`/profile/${props.username}`}>
+                <h4 className="mr-2 text-sm cursor-pointer">{props.name}</h4>
+              </Link>
+            )}
             <p className="text-slate-400 md:text-sm text-xs font-manrope">
               (@
               {props.username == cookie ? (
-                <Link
-                  to="/profile"
-                  className="text-slate-300 text-xs"
-                >
+                <Link to="/profile" className="text-slate-300 text-xs">
                   {props.username}
                 </Link>
               ) : (
                 <Link
                   to={`/profile/${props.username}`}
                   className="text-slate-300 text-xs"
-                  target="_blank"
                 >
                   {props.username}
                 </Link>
