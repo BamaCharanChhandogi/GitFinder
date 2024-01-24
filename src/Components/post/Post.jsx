@@ -103,16 +103,16 @@ function Post(props) {
                 <BsThreeDotsVertical className="" />
               </div>
               {showDropdown && (
-                <div className="absolute font-serif right-0 bg-black bg-opacity-20 overflow-hidden z-10 rounded-md border">
+                <div className="absolute  backdrop-blur-md font-serif right-0 bg-black bg-opacity-20 overflow-hidden z-10 rounded-md border">
                   <div
                     onClick={handleEdit}
-                    className="px-4 py-2 text-white  cursor-pointer hover:bg-pink-500"
+                    className="px-5 py-3 text-white  cursor-pointer hover:bg-pink-500"
                   >
                     edit
                   </div>
                   <div
                     onClick={handleDelete}
-                    className="px-4 py-2 text-white cursor-pointer hover:bg-pink-500"
+                    className="px-5 py-3 text-white cursor-pointer hover:bg-pink-500"
                   >
                     delete
                   </div>
@@ -123,7 +123,7 @@ function Post(props) {
         </div>
       </div>
       <div className="flex flex-col py-4">
-        <p className="my-3 md:mb-2 md:mt-0 text-sm tracking-wide">
+        <p className="my-3 md:mb-2 md:mt-0 md:pl-2 md:pt-1 text-sm tracking-wide">
           {props.description}
         </p>
         {props.image && (
@@ -134,7 +134,7 @@ function Post(props) {
           />
         )}
       </div>
-      <div className=" px-4 flex justify-between bg-black bg-opacity-10 py-2 mt-10">
+      <div className=" px-4 flex justify-between bg-black bg-opacity-10 py-2 ">
         <div className="flex items-center text-xs">
           <BiHeart className=" text-red-700" />
           <h5 className="text-slate-200 ml-1">{props.like}</h5>

@@ -151,9 +151,9 @@ export default function ProfilePage() {
                     />
                     <button
                       //   onClick={githubSignout}
-                      className="bg-pink-700 bg-opacity-80 text-white-400 hover:bg-opacity-100 p-3 rounded-lg w-3/6 m-auto hidden md:block"
+                      className="bg-pink-700 bg-opacity-80 text-white-400 hover:bg-opacity-100 p-2 pb-3 rounded-lg w-4/6 m-auto hidden md:block"
                     >
-                      Follow{" "}
+                      Say Hi ! <span className="text-xl">👋</span>{" "}
                     </button>
                   </div>
                   <div className="flex flex-col ml-8 md:ml-20 w-4/6">
@@ -179,7 +179,7 @@ export default function ProfilePage() {
                         // onClick={githubSignout}
                         className="bg-black bg-opacity-50 hover:bg-opacity-100 text-purple-500 p-2  mt-4 rounded-lg w-3/5 block md:hidden"
                       >
-                        Log Out{" "}
+                        say hii! {" "}
                       </button>
                     </div>
                     <div className="md:flex flex-wrap items-center mt-6 hidden">
