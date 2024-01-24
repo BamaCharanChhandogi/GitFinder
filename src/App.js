@@ -14,7 +14,18 @@ import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       navigate("/home");
+  //     }
+  //   });
 
+  //   // Clean up the subscription when the component unmounts
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
@@ -36,7 +47,15 @@ export default function App() {
           path="/"
           element={<Landing authenticateUser={authenticateUser} />}
         />
-        <Route
+         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/messages" element={<Message />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile/:username" element={<ProfilePage />} />
+        {/* <Route
           path="/home"
           element={auth.currentUser ? <Home /> : <Navigate to="/" />}
         />
@@ -67,7 +86,7 @@ export default function App() {
         <Route
           path="/profile/:username"
           element={auth.currentUser ? <ProfilePage /> : <Navigate to="/" />}
-        />
+        /> */}
       </Routes>
     </div>
   );
