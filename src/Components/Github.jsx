@@ -2,9 +2,9 @@ import React from "react";
 import GitHubCalendar from "react-github-calendar";
 function Github(props) {
   return (
-    <div className="Github">
+    <div className="rounded">
       <h1 className="text-center text-2xl" style={{ paddingBottom: "20px" }}>
-        Days I <strong className="text-purple-500">Code</strong>
+        Days {props.name} <strong className="text-pink-500">Code</strong>
       </h1>
       <GitHubCalendar
         username={props.username}

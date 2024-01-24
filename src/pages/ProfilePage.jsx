@@ -179,7 +179,7 @@ export default function ProfilePage() {
                         // onClick={githubSignout}
                         className="bg-black bg-opacity-50 hover:bg-opacity-100 text-purple-500 p-2  mt-4 rounded-lg w-3/5 block md:hidden"
                       >
-                        say hii! {" "}
+                        say hii!{" "}
                       </button>
                     </div>
                     <div className="md:flex flex-wrap items-center mt-6 hidden">
@@ -252,7 +252,7 @@ export default function ProfilePage() {
                 </span>
               </div>
               <div className="mt-4 md:mt-20 mb-6 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
-              <Github username={username} />
+              <Github name={userData.name} username={username} />
               <div className="mt-4 md:mt-10 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
               <div className="flex w-full md:w-4/5 mx-auto justify-around md:mt-3">
                 <div

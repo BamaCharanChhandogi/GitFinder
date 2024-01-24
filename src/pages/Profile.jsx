@@ -238,7 +238,7 @@ export default function Profile() {
                 </span>
               </div>
               <div className="mt-4 md:mt-20 mb-6 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
-              <Github username={cookie} />
+              <Github name={"I"} username={cookie} />
               <div className="mt-4 md:mt-10 h-[1px] bg-slate-600 md:w-5/6 mx-auto"></div>
               <div className="flex w-full md:w-4/5 mx-auto justify-around md:mt-3">
                 <div

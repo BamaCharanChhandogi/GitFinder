@@ -4,6 +4,7 @@ import { FaArrowDown } from "react-icons/fa";
 import Sidebar from "../Components/Sidebar";
 import SearchProfile from "../Components/explore/SearchProfile";
 import RepoInfo from "../Components/RepoInfo";
+import Github from "../Components/Github";
 
 function Explore() {
   const [searchip, setSearchIp] = useState("");
@@ -77,22 +78,36 @@ function Explore() {
                 <BiSearchAlt className="m-3 w-8 h-8 text-white hover:text-blue-200" />
               </button>
             </form>
+            {!user && (
+              <div className="flex justify-center mt-5">
+                <img
+                  src="https://media.giphy.com/media/4Zd5CCT47enl32Sx3P/giphy.gif"
+                  className=" rounded-lg w-4/6"
+                  alt=""
+                />
+              </div>
+            )}
             {user && (
-              <SearchProfile
-                avatar={user.avatar_url}
-                id={user.id}
-                name={user.name}
-                login={user.login}
-                blog={user.blog}
-                company={user.company}
-                email={user.email}
-                location={user.location}
-                bio={user.bio}
-                twitter_username={user.twitter_username}
-                public_repos={user.public_repos}
-                followers={user.followers}
-                following={user.following}
-              />
+              <>
+                <SearchProfile
+                  avatar={user.avatar_url}
+                  id={user.id}
+                  name={user.name}
+                  login={user.login}
+                  blog={user.blog}
+                  company={user.company}
+                  email={user.email}
+                  location={user.location}
+                  bio={user.bio}
+                  twitter_username={user.twitter_username}
+                  public_repos={user.public_repos}
+                  followers={user.followers}
+                  following={user.following}
+                />
+                <div className="text-white py-2 mb-8">
+                  <Github username={user.login} name={user.name} />
+                </div>
+              </>
             )}
             {user && (
               <>
