@@ -15,19 +15,6 @@ import ProfilePage from "./pages/ProfilePage";
 export default function App() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        navigate("/home");
-      }
-    });
-
-    // Clean up the subscription when the component unmounts
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
