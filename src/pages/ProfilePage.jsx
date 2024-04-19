@@ -21,7 +21,7 @@ export default function ProfilePage() {
 
   const fetchData = async () => {
     try {
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${username}`;
       const response = await fetch(endpoint, {
         headers: {
@@ -94,7 +94,7 @@ export default function ProfilePage() {
 
   const fetchDataRepo = async () => {
     try {
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${username}/repos`;
       const response = await fetch(endpoint, {
         headers: {

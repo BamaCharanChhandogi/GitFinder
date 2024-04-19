@@ -14,7 +14,7 @@ export default function Home() {
 
   const cookie = document.cookie;
   const fetchData = async () => {
-    const accessToken = "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";
+    const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
     const endpoint = `https://api.github.com/users/${cookie}`;
     const response = await fetch(endpoint, {
       headers: {

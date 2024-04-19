@@ -38,7 +38,7 @@ export default function Profile() {
   }
   const fetchData = async () => {
     try {
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${cookie}`;
       const response = await fetch(endpoint, {
         headers: {
@@ -46,6 +46,7 @@ export default function Profile() {
         },
       });
       const data = await response.json();
+      console.log(data)
       return setUserData(data);
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -84,7 +85,7 @@ export default function Profile() {
 
   const fetchDataRepo = async () => {
     try {
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${cookie}/repos`;
       const response = await fetch(endpoint, {
         headers: {

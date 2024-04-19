@@ -25,7 +25,7 @@ function Explore() {
   const fetchData = async () => {
     try {
       const trimmed = searchip.trim();
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${trimmed}`;
       const response = await fetch(endpoint, {
         headers: {
@@ -43,7 +43,7 @@ function Explore() {
   const fetchRepo = async () => {
     try {
       const trimmed = searchip.trim();
-      const accessToken = "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";
+      const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${trimmed}/repos`;
       const response = await fetch(endpoint, {
         headers: {
