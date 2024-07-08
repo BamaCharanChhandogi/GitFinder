@@ -15,7 +15,7 @@ export default function Navbar(props) {
   ];
   const [open, setOpen] = useState(false);
   return (
-    <nav className="flex px-2 items-center justify-between md:justify-around h-20 md:h-28 bg-slate-900 bg-opacity-30 backdrop-blur-lg drop-shadow-2xl md:mb-10 z-50 w-full">
+    <nav className="flex px-2 items-center justify-between md:justify-around h-20 md:h-28 bg-slate-900 bg-opacity-30 backdrop-blur-lg drop-shadow-2xl z-50 w-full">
       <div className="w-2/12 h-full md:w-4/6 flex justify-start font-manrope items-center">
         <div className="md:p-0 md:w-2/12 w-11/12 md:flex content-center items-center">
           <a href="/">
