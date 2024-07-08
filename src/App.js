@@ -6,7 +6,7 @@ import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
-import Notifications from "./pages/Notifications";
+import BlogPost from "./pages/BlogPage";
 import Message from "./pages/Chat";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -52,7 +52,7 @@ export default function App() {
          <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/blog" element={<BlogPost />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { TiHomeOutline } from "react-icons/ti";
 import { BiSearchAlt } from "react-icons/bi";
-import { FiBell } from "react-icons/fi";
 import { FiMessageSquare } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { GrBlog } from "react-icons/gr";
 
 export default function Sidebar() {
   const [active, setActive] = useState("");
@@ -72,7 +72,7 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="w-full md:mb-2 mx-2 md:mx-0">
-          <Link to={"/notifications"}>
+          <Link to={"/blog"}>
             <div
               className={`flex ${
                 active === "notifications"
@@ -80,8 +80,8 @@ export default function Sidebar() {
                   : "hover:text-pink-400 hover:bg-black hover:rounded-lg"
               } p-2`}
             >
-              <FiBell className="m-auto md:m-2" />
-              <span className="m-1 hidden md:block">Notifications</span>
+              <GrBlog  className="m-auto md:m-2" />
+              <span className="m-1 hidden md:block">Blogs</span>
             </div>
           </Link>
         </li>

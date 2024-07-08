@@ -1,4 +1,25 @@
 .flex-1 {
     flex: 1; /* Take up remaining space */
   }
+
+  .ql-editor {
+    min-height: 200px;
+    color: white;
+  }
   
+  .ql-snow .ql-stroke {
+    stroke: #fff;
+  }
+  
+  /* .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+    fill: #fff;
+  } */
+  
+  .ql-toolbar.ql-snow {
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    /* background-color: rgba(0, 0, 0, 0.2); */
+  }
+  
+  .ql-container.ql-snow {
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+  }
