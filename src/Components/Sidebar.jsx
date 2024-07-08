@@ -86,7 +86,7 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="w-full md:mb-2 mx-2 md:mx-0">
-          <Link to={"/messages"}>
+          <Link to={"/chat"}>
             <div
               className={`flex ${
                 active === "messages"

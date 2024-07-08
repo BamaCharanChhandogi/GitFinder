@@ -18,7 +18,15 @@ function Post(props) {
     setShowDropdown(!showDropdown);
   };
   const handleDelete = () => {
-    db.collection("posts").doc(props.id).delete();
+    db.collection("posts").doc(props.id).delete().then(() => {
+      console.log("Document successfully deleted!");
+      // Notify parent component to remove this post from state
+      if (props.onDelete) {
+        props.onDelete(props.id);
+      }
+    }).catch((error) => {
+      console.error("Error removing document: ", error);
+    });
     setShowDropdown(!showDropdown);
   };
   const handleLike = () => {
@@ -27,8 +35,16 @@ function Post(props) {
   };
   useEffect(() => {
     const postLike = db.collection("posts").doc(props.id);
-    postLike.update({
-      like: likeCount,
+    postLike.get().then(doc => {
+      if (doc.exists) {
+        postLike.update({
+          like: likeCount,
+        });
+      } else {
+        console.log("Document does not exist");
+      }
+    }).catch(error => {
+      console.error("Error updating like count:", error);
     });
   }, [likeCount]);
   const handleComment = () => {
@@ -38,6 +54,7 @@ function Post(props) {
   const handleThreeDotsClick = () => {
     setShowDropdown(!showDropdown);
   };
+  // console.log(props.username);
   return (
     <div
       className={`bg-black font-manrope tracking-wide bg-opacity-20 w-full md:w-${props.width} rounded-2xl p-4 mt-4 md:mt-6 md:mx-auto text-slate-100 `}

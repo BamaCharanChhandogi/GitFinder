@@ -74,13 +74,16 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    db.collection('posts').where('usernames', '==', cookie).orderBy("timestamp", "desc").onSnapshot(snapshot => {
-      // console.log(snapshot.docs.map(doc => doc.data()))
-      setPost(snapshot.docs.map((doc)=>{
-          return {id: doc.id, data: doc.data()}
-      }));
-  });
-
+    const unsubscribe = db.collection('posts').where('usernames', '==', cookie).orderBy("timestamp", "desc").onSnapshot(
+      snapshot => {
+        setPost(snapshot.docs.map((doc) => ({id: doc.id, data: doc.data()})));
+      },
+      error => {
+        console.error("Error fetching posts:", error);
+      }
+    );
+  
+    return () => unsubscribe();
   }, []);
 
   const fetchDataRepo = async () => {
@@ -109,6 +112,10 @@ export default function Profile() {
         console.log(error.message);
       }
     }
+  };
+  const onDeletePost = (postId) => {
+    console.log("Deleting post with id:", postId);
+    setPost(prevPosts => prevPosts.filter(post => post.id !== postId));
   };
   let link = `${userData.blog}`;
   if (link.substring(0, 8) !== "https://") {
@@ -277,7 +284,7 @@ export default function Profile() {
                       data: {
                         logo,
                         name,
-                        username,
+                        usernames,
                         bio,
                         like,
                         likedBy,
@@ -289,15 +296,17 @@ export default function Profile() {
                       return (
                         <Post
                           key={id}
+                          id={id}
                           logo={logo}
                           name={name}
-                          username={username}
+                          username={usernames}
                           like={like}
                           likedBy={likedBy}
                           commentCnt={commentCnt}
                           commentObj={commentObj}
                           bio={bio}
                           description={description}
+                          onDelete={onDeletePost}
                         />
                       );
                     }

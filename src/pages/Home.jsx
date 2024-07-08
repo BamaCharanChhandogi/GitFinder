@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
-import db from "../firebase";
+import db, { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { VscLoading } from "react-icons/vsc";
 import CreatePost from "../Components/post/CreatePost";
@@ -25,12 +25,22 @@ export default function Home() {
     return setUserData(data);
   };
   useEffect(() => {
-    fetchData();
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        setPost(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
-      });
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchData();
+        db.collection("posts")
+          .orderBy("timestamp", "desc")
+          .onSnapshot((snapshot) => {
+            setPost(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
+          }, (error) => {
+            console.error("Error fetching posts:", error);
+          });
+      } else {
+        navigate("/");
+      }
+    });
+  
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {

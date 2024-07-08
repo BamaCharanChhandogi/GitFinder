@@ -7,10 +7,12 @@ import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
-import Message from "./pages/Message";
+import Message from "./pages/Chat";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ProfilePage from "./pages/ProfilePage";
+import Chat from "./pages/Chat";
+import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
@@ -55,6 +57,8 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
+        <Route path="/chat" element={<UserList />} />
+        <Route path="/chat/:conversationId" element={<Chat />} />
         {/* <Route
           path="/home"
           element={auth.currentUser ? <Home /> : <Navigate to="/" />}
