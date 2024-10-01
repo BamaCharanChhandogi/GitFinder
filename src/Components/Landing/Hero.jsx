@@ -28,7 +28,7 @@ export default function Hero(props) {
             onClick={props.authenticateUser}
             className="px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-pink-500 to-purple-600 rounded-full hover:from-pink-600 hover:to-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
           >
-            Let's go! 🚂
+            Let's go! 🚀
           </button>
         </div>
       </div>
