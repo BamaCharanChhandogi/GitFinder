@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
 import Explore from "./pages/Explore";
@@ -17,6 +17,7 @@ import UserList from "./pages/UserList";
 export default function App() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -30,11 +31,10 @@ export default function App() {
   };
   }, [navigate]); //Included navigate as a dependency
   
-  function authenticateUser() {
-    auth
-      .signInWithPopup(provider)
+  const authenticateUser = () => {
+    signInWithPopup(auth, provider) // Use the correct function call
       .then((userAuth) => {
-        const githubUsername = userAuth.additionalUserInfo.dispayname;
+        const githubUsername = userAuth.user.displayName; // Fixed the typo
         document.cookie = `githubUsername=${githubUsername}`;
         navigate("/home");
       })
@@ -42,7 +42,7 @@ export default function App() {
         setError("Error signing in: " + error.message); // Update error message
         console.log(error.code + error.message);
       });
-  }
+  };
 
   const isValidGithubUsername = (username) => {
     // GitHub username validation: 
