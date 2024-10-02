@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
-import Explore from "./pages/Explore"; // Assuming you want to keep this import
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
