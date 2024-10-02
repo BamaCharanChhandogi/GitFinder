@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
+import { signInWithPopup } from "firebase/auth"; // Import signInWithPopup from firebase/auth
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
