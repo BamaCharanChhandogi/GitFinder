@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
@@ -16,6 +16,7 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   // useEffect(() => {
   //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
   //     if (authUser) {
@@ -42,14 +43,32 @@ export default function App() {
         console.log(errorCode + errorMessage);
       });
   }
+
+  const isValidGithubUsername = (username) => {
+    // GitHub username validation: 
+    const regex = /^(?!.*\.\.)(?!.*\.$)(?!.*__)(?!.*_-)[A-Za-z0-9._-]{1,39}$/;
+    return regex.test(username);
+  };
+
+  const handleSearch = (username) => {
+    // Check for invalid usernames based on GitHub rules
+    if (!isValidGithubUsername(username.trim())) {
+      setError("No such user, please provide a correct username.");
+      return; // Exit the function if the username is invalid
+    }
+    const encodedUsername = encodeURIComponent(username.trim());
+    navigate(`/profile/${encodedUsername}`);
+  };
+  
   return (
     <div>
+      {error && <div className="error-message">{error}</div>} {/* Display error message */}
       <Routes>
         <Route
           path="/"
           element={<Landing authenticateUser={authenticateUser} />}
         />
-         <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
