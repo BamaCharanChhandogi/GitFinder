@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
 import Home from "./pages/Home";
@@ -14,27 +14,30 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Example state for authentication
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State for authentication
 
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
       .then((userAuth) => {
         const githubUsername = userAuth.additionalUserInfo.username;
-        document.cookie = githubUsername;
+        document.cookie = `githubUsername=${githubUsername}; path=/`; // Store cookie for session
         setIsAuthenticated(true); // Set authenticated state
-        navigate("/home");
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        console.error("Authentication error: ", error);
       });
   }
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated, navigate]); // Navigate to home after authentication
+
   const Explore = () => {
-    const [username, setUsername] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [username, setUsername] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSearch = () => {
       if (!/^[a-zA-Z0-9-]+$/.test(username)) {
@@ -42,16 +45,16 @@ export default function App() {
         return;
       }
       setErrorMessage(''); // Clear previous errors
-      // Execute search...
+      // Add search logic here, e.g., API calls to fetch user
     };
 
     return (
       <div>
-        <input 
-          type="text" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-          placeholder="Search for a user" 
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Search for a user"
         />
         <button onClick={handleSearch}>Search</button>
         {errorMessage && <div className="error">{errorMessage}</div>}
