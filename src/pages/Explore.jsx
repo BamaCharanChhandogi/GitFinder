@@ -50,6 +50,7 @@ function Explore() {
   };
 
   const fetchRepo = async () => {
+    setRepo([]);
     try {
       const trimmed = searchIp.trim();
       const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
