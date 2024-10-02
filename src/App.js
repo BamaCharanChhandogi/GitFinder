@@ -17,18 +17,19 @@ import UserList from "./pages/UserList";
 export default function App() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       navigate("/home");
-  //     }
-  //   });
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        navigate("/home");
+      }
+    });
 
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
+  // Clean up the subscription when the component unmounts
+  return () => {
+    unsubscribe();
+  };
+  }, [navigate]); //Included navigate as a dependency
+  
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
