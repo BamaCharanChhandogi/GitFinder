@@ -1,11 +1,10 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { getStorage } from "firebase/storage";
-import { getFirestore } from "firebase/firestore";
-import { getDatabase } from "firebase/database";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import "firebase/compat/database";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -16,18 +15,12 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const provider = new firebase.auth.GithubAuthProvider();
+const storage = firebase.storage();
+const db = firebaseApp.firestore();
+const Rdb = firebaseApp.database();
 
-// Initialize Firebase services
-const auth = getAuth(app);
-const provider = new GithubAuthProvider();
-const storage = getStorage(app);
-const db = getFirestore(app);
-const Rdb = getDatabase(app);
-
-// Export services
-export { auth, provider, storage, Rdb, signInWithPopup };
+export { auth, provider, storage,Rdb };
 export default db;
-
-// Verify your environment variables (optional)
-console.log(firebaseConfig);
