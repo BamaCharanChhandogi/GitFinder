@@ -26,7 +26,7 @@ const db = getFirestore(app);
 const Rdb = getDatabase(app);
 
 // Export services
-export { auth, provider, storage, Rdb };
+export { auth, provider, storage, Rdb, signInWithPopup };
 export default db;
 
 // Verify your environment variables (optional)
