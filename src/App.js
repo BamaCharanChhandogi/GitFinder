@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
 import { signInWithPopup } from "firebase/auth"; // Import signInWithPopup from firebase/auth
 import Explore from "./pages/Explore";
@@ -18,6 +17,7 @@ import UserList from "./pages/UserList";
 export default function App() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [username, setUsername] = useState(""); // State for GitHub username input
   
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -50,11 +50,11 @@ export default function App() {
     return regex.test(username);
   };
 
-  const handleSearch = (username) => {
-    // Check for invalid usernames based on GitHub rules
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent form submission
     if (!isValidGithubUsername(username.trim())) {
       setError("No such user, please provide a correct username.");
-      return; // Exit the function if the username is invalid
+      return; 
     }
     const encodedUsername = encodeURIComponent(username.trim());
     navigate(`/profile/${encodedUsername}`);
@@ -62,12 +62,20 @@ export default function App() {
   
   return (
     <div>
-      {error && <div className="error-message">{error}</div>} {/* Display error message */}
-      <Routes>
-        <Route
-          path="/"
-          element={<Landing authenticateUser={authenticateUser} />}
+      {error && <div className="error-message">{error}</div>} 
+      
+      <form onSubmit={handleSearch}> {/* Add a form for searching usernames */}
+        <input 
+          type="text" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
+          placeholder="Enter GitHub Username" 
         />
+        <button type="submit">Search</button>
+      </form>
+            
+      <Routes>
+        <Route path="/" element={<Landing authenticateUser={authenticateUser} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
