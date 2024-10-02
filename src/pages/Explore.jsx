@@ -68,7 +68,7 @@ function Explore() {
       const data = await response.json();
       setRepo(data);
     } catch (error) {
-      console.log(error);
+    //  console.log(error);
       alert("Error: " + error.message);
     }
   };
