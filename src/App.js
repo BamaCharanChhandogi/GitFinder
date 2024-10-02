@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { auth, provider } from "./firebase";
+import { auth, provider, signInwithPopup } from "./firebase";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
@@ -34,14 +34,13 @@ export default function App() {
     auth
       .signInWithPopup(provider)
       .then((userAuth) => {
-        const githubUsername = userAuth.additionalUserInfo.username;
-        document.cookie = githubUsername;
+        const githubUsername = userAuth.additionalUserInfo.dispayname;
+        document.cookie = `githubUsername=${githubUsername}`;
         navigate("/home");
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        setError("Error signing in: " + error.message); // Update error message
+        console.log(error.code + error.message);
       });
   }
 
