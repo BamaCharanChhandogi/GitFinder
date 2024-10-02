@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Navigate, useNavigate, useParams } from "react-router-dom";
 import { auth, provider } from "./firebase";
-import Explore from "./pages/Explore";
+import Explore from "./pages/Explore"; // Assuming you want to keep this import
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
@@ -16,18 +15,21 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       navigate("/home");
-  //     }
-  //   });
+  const [username, setUsername] = useState("");
 
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        navigate("/home");
+      }
+    });
+
+    // Clean up the subscription when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
+
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
@@ -37,11 +39,16 @@ export default function App() {
         navigate("/home");
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        console.log(`${error.code}: ${error.message}`);
       });
   }
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const encodedUsername = encodeURIComponent(username.trim());
+    navigate(`/profile/${encodedUsername}`);
+  };
+
   return (
     <div>
       <Routes>
@@ -49,11 +56,24 @@ export default function App() {
           path="/"
           element={<Landing authenticateUser={authenticateUser} />}
         />
-         <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore" element={
+          <div>
+            <h1>Explore</h1>
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Search username"
+              />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        } />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
