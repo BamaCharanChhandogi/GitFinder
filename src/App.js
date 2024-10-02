@@ -14,6 +14,7 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Example state for authentication
 
   function authenticateUser() {
     auth
@@ -21,6 +22,7 @@ export default function App() {
       .then((userAuth) => {
         const githubUsername = userAuth.additionalUserInfo.username;
         document.cookie = githubUsername;
+        setIsAuthenticated(true); // Set authenticated state
         navigate("/home");
       })
       .catch((error) => {
@@ -30,19 +32,15 @@ export default function App() {
       });
   }
 
-  // Explore component integrated into App.js
   const Explore = () => {
     const [username, setUsername] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSearch = () => {
-      // Validate username
-      if (!/^[a-zA-Z0-9-]+$/.test(username)) { // Adjust regex as needed
+      if (!/^[a-zA-Z0-9-]+$/.test(username)) {
         setErrorMessage("No user found. Please check the username.");
         return;
       }
-
-      // Proceed with search logic here
       setErrorMessage(''); // Clear previous errors
       // Execute search...
     };
@@ -57,7 +55,6 @@ export default function App() {
         />
         <button onClick={handleSearch}>Search</button>
         {errorMessage && <div className="error">{errorMessage}</div>}
-        {/* Render search results here */}
       </div>
     );
   };
@@ -66,7 +63,7 @@ export default function App() {
     <div>
       <Routes>
         <Route path="/" element={<Landing authenticateUser={authenticateUser} />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
