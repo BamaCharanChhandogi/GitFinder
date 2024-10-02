@@ -32,17 +32,16 @@ export default function App() {
   };
   }, [navigate]); //Included navigate as a dependency
   
-  const authenticateUser = () => {
-    signInWithPopup(auth, provider) // Use the correct function call
-      .then((userAuth) => {
-        const githubUsername = userAuth.user.displayName; // Fixed the typo
-        document.cookie = `githubUsername=${githubUsername}`;
-        navigate("/home");
-      })
-      .catch((error) => {
-        setError("Error signing in: " + error.message); // Update error message
-        console.log(error.code + error.message);
-      });
+  const authenticateUser = async () => {
+    try {
+      const userAuth = await signInWithPopup(auth, provider); // Use await for async function
+      const githubUsername = userAuth.user.displayName; // Access the user's display name correctly
+      document.cookie = `githubUsername=${githubUsername}`;
+      navigate("/home");
+    } catch (error) {
+      setError("Error signing in: " + error.message); // Update error message
+      console.log(error.code + error.message);
+    }
   };
 
   const isValidGithubUsername = (username) => {
