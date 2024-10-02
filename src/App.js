@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
-import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
@@ -16,40 +14,59 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       navigate("/home");
-  //     }
-  //   });
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State for authentication
 
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
       .then((userAuth) => {
         const githubUsername = userAuth.additionalUserInfo.username;
-        document.cookie = githubUsername;
-        navigate("/home");
+        document.cookie = `githubUsername=${githubUsername}; path=/`; // Store cookie for session
+        setIsAuthenticated(true); // Set authenticated state
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        console.error("Authentication error: ", error);
       });
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated, navigate]); // Navigate to home after authentication
+
+  const Explore = () => {
+    const [username, setUsername] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const handleSearch = () => {
+      if (!/^[a-zA-Z0-9-]+$/.test(username)) {
+        setErrorMessage("No user found. Please check the username.");
+        return;
+      }
+      setErrorMessage(''); // Clear previous errors
+      // Add search logic here, e.g., API calls to fetch user
+    };
+
+    return (
+      <div>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Search for a user"
+        />
+        <button onClick={handleSearch}>Search</button>
+        {errorMessage && <div className="error">{errorMessage}</div>}
+      </div>
+    );
+  };
+
   return (
     <div>
       <Routes>
-        <Route
-          path="/"
-          element={<Landing authenticateUser={authenticateUser} />}
-        />
-         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Landing authenticateUser={authenticateUser} />} />
+        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
@@ -59,38 +76,6 @@ export default function App() {
         <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/chat" element={<UserList />} />
         <Route path="/chat/:conversationId" element={<Chat />} />
-        {/* <Route
-          path="/home"
-          element={auth.currentUser ? <Home /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={auth.currentUser ? <Profile /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/messages"
-          element={auth.currentUser ? <Message /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/notifications"
-          element={auth.currentUser ? <Notifications /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/explore"
-          element={auth.currentUser ? <Explore /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/contact"
-          element={auth.currentUser ? <Contact /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/about"
-          element={auth.currentUser ? <About /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile/:username"
-          element={auth.currentUser ? <ProfilePage /> : <Navigate to="/" />}
-        /> */}
       </Routes>
     </div>
   );
