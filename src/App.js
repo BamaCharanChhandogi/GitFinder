@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth, provider } from "./firebase";
-import { signInWithPopup } from "firebase/auth"; // Import signInWithPopup from firebase/auth
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
@@ -16,67 +16,40 @@ import UserList from "./pages/UserList";
 
 export default function App() {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const [username, setUsername] = useState(""); // State for GitHub username input
-  
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       navigate("/home");
+  //     }
+  //   });
+
+  //   // Clean up the subscription when the component unmounts
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+  function authenticateUser() {
+    auth
+      .signInWithPopup(provider)
+      .then((userAuth) => {
+        const githubUsername = userAuth.additionalUserInfo.username;
+        document.cookie = githubUsername;
         navigate("/home");
-      }
-    });
-
-  // Clean up the subscription when the component unmounts
-  return () => {
-    unsubscribe();
-  };
-  }, [navigate]); //Included navigate as a dependency
-  
-  const authenticateUser = async () => {
-    try {
-      const userAuth = await signInWithPopup(auth, provider); // Use await for async function
-      const githubUsername = userAuth.user.displayName; // Access the user's display name correctly
-      document.cookie = `githubUsername=${githubUsername}`;
-      navigate("/home");
-    } catch (error) {
-      setError("Error signing in: " + error.message); // Update error message
-      console.log(error.code + error.message);
-    }
-  };
-
-  const isValidGithubUsername = (username) => {
-    // GitHub username validation: 
-    const regex = /^(?!.*\.\.)(?!.*\.$)(?!.*__)(?!.*_-)[A-Za-z0-9._-]{1,39}$/;
-    return regex.test(username);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault(); // Prevent form submission
-    if (!isValidGithubUsername(username.trim())) {
-      setError("No such user, please provide a correct username.");
-      return; 
-    }
-    const encodedUsername = encodeURIComponent(username.trim());
-    navigate(`/profile/${encodedUsername}`);
-  };
-  
+      })
+      .catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode + errorMessage);
+      });
+  }
   return (
     <div>
-      {error && <div className="error-message">{error}</div>} 
-      
-      <form onSubmit={handleSearch}> {/* Add a form for searching usernames */}
-        <input 
-          type="text" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-          placeholder="Enter GitHub Username" 
-        />
-        <button type="submit">Search</button>
-      </form>
-            
       <Routes>
-        <Route path="/" element={<Landing authenticateUser={authenticateUser} />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/"
+          element={<Landing authenticateUser={authenticateUser} />}
+        />
+         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
