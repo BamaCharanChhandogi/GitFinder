@@ -81,10 +81,11 @@ function Explore() {
             {!user && (
               <div className="flex justify-center mt-5">
                 <img
-                  src="https://media.giphy.com/media/4Zd5CCT47enl32Sx3P/giphy.gif"
-                  className=" rounded-lg w-4/6"
-                  alt=""
-                />
+  src="https://i.gifer.com/NXvj.gif"
+  style="width: 700px; height: 394px;"
+  class="rounded-lg"
+  alt=""
+/>
               </div>
             )}
             {user && (
