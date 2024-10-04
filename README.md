@@ -1,5 +1,9 @@
 # <p align="center">Git-Finder</p>
 
+<p align="center">
+  <img src="./src/assets/ReadMeAssests/Login.png/" alt="FITFLEX Poster" />
+</p>
+
 
 <div align="center">
   <p>
