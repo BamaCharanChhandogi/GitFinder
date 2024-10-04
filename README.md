@@ -55,63 +55,28 @@
 
 ## Features
 
-<p align="center">
-  <ol>
-     <li>GitHub Authentication
-       <ul>
-        <li>Users can log in securely using their GitHub credentials.</li>
-        <li>OAuth integration ensures a seamless and secure authentication process.</li>
-       </ul>
-     </li>
-       <li>Post Thoughts
-       <ul>
-        <li>Share your latest discoveries, thoughts, or challenges with the community.</li>
-        <li>Post updates in a format similar to popular social media platforms.</li>
-       </ul>
-     </li>
-      <li>Explore GitHub Profiles
-       <ul>
-        <li>Search for other GitHub users and explore their profiles.</li>
-        <li>View GitHub contribution graphs to understand their coding activity over time.</li>
-        <li> Explore repositories and projects associated with each user.</li>
-       </ul>
-     </li>
-      <li>Connect with Developers
-       <ul>
-        <li>Follow other GitHub users to stay updated on their activities.</li>
-        <li> Like, comment, and engage with posts to foster a vibrant developer community.</li>
-        <li> Explore repositories and projects associated with each user.</li>
-       </ul>
-     </li>
-     
-Whether you're looking to build your professional network, seek feedback on projects, or simply stay in touch with fellow coders, GitHub Finder creates an engaging space for developers of all levels.
+### 1. GitHub Authentication
 
-  </ol>
+- Users can log in securely using their GitHub credentials.
+- OAuth integration ensures a seamless and secure authentication process.
 
-</p>
+### 2. Post Thoughts
 
-
-- 
-- 
-
-### 2. 
-
-- 
-- 
+- Share your latest discoveries, thoughts, or challenges with the community.
+- Post updates in a format similar to popular social media platforms.
 
 ### 3. Explore GitHub Profiles
 
-- 
-- 
--
+- Search for other GitHub users and explore their profiles.
+- View GitHub contribution graphs to understand their coding activity over time.
+- Explore repositories and projects associated with each user.
 
-### 4. 
+### 4. Connect with Developers
 
-- 
--
+- Follow other GitHub users to stay updated on their activities.
+- Like, comment, and engage with posts to foster a vibrant developer community.
 
-
-
+Whether you're looking to build your professional network, seek feedback on projects, or simply stay in touch with fellow coders, GitHub Finder creates an engaging space for developers of all levels.
 
 <h2 id="what-can-you-contribute">What can you contribute?</h2>
 
@@ -255,7 +220,7 @@ git push origin YourBranchName
 </p>
 <div align="center">
 <a  href="https://github.com/BamaCharanChhandogi/GitFinder/graphs/contributors">
-  <img align="center" src="https://contrib.rocks/image?max=100&repo=Open-Code-Crafters/FitFlex" />
+  <img align="center" src="https://contrib.rocks/image?max=100&repo=BamaCharanChhandogi/GitFinder" />
 </a> 
 
 
