@@ -120,7 +120,7 @@ export default function Home() {
             href="https://github.com/BamaCharanChhandogi"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-3 px-6 rounded-lg mt-6 shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
           >
             Follow on GitHub
           </a>
