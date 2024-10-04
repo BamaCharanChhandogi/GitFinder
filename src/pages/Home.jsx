@@ -24,22 +24,31 @@ export default function Home() {
     const data = await response.json();
     return setUserData(data);
   };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         fetchData();
         db.collection("posts")
           .orderBy("timestamp", "desc")
-          .onSnapshot((snapshot) => {
-            setPost(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
-          }, (error) => {
-            console.error("Error fetching posts:", error);
-          });
+          .onSnapshot(
+            (snapshot) => {
+              setPost(
+                snapshot.docs.map((doc) => ({
+                  id: doc.id,
+                  data: doc.data(),
+                }))
+              );
+            },
+            (error) => {
+              console.error("Error fetching posts:", error);
+            }
+          );
       } else {
         navigate("/");
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -52,9 +61,10 @@ export default function Home() {
       setLoading(false);
     }, 1000);
   }, []);
+
   return (
     <>
-      <div className="flex  gap-64 flex-col justify-center md:flex-row bg-[#1B2430] h-auto min-h-screen md:px-40">
+      <div className="flex gap-64 flex-col justify-center md:flex-row bg-[#1B2430] h-auto min-h-screen md:px-40">
         <div>
           <Sidebar />
         </div>
@@ -104,6 +114,16 @@ export default function Home() {
               }
             )
           )}
+
+          {/* Add Follow on GitHub button below the posts */}
+          <a
+            href="https://github.com/BamaCharanChhandogi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Follow on GitHub
+          </a>
         </div>
       </div>
     </>
