@@ -30,7 +30,13 @@ function BlogPost({ id, title, content, author, timestamp, likes, comments }) {
   return (
     <div className="bg-black bg-opacity-20 rounded-2xl p-4 mb-6">
       <h2 className="text-2xl font-bold mb-2">{title}</h2>
-      <p className="text-sm text-gray-400 mb-4">By {author} on {formattedDate}</p>
+      <div className="text-sm text-gray-400 mb-4">By 
+        <a href={`https://gitfinder-psi.vercel.app/profile/${author}`} className=" mx-1 hover:underline">
+            {author}
+        </a> 
+        on {formattedDate}
+      </div>
+
       {/* Replace the plain text content with dangerouslySetInnerHTML */}
       <div className="mb-4 prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
       <div className="flex items-center justify-between">
@@ -48,7 +54,8 @@ function BlogPost({ id, title, content, author, timestamp, likes, comments }) {
         <div className="mt-4">
           {comments.map((comment, index) => (
             <div key={index} className="bg-gray-800 rounded p-2 mb-2">
-              <p className="text-sm text-gray-400">{comment.author}</p>
+              <div className="text-sm text-gray-400"> <a href={`https://gitfinder-psi.vercel.app/profile/${author}`} className=" mx-1 hover:underline">
+            {comment.author}</a> </div>
               <p>{comment.content}</p>
             </div>
           ))}
