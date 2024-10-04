@@ -11,7 +11,7 @@
       <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source Love svg1" />
     </a>
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs Welcome" />
-    <img src="https://api.visitorbadge.io/api/visitors?path=Open-Code-Crafters52%2FFitFlex%20&countColor=%23263759&style=flat" alt="Visitors" />
+    <img src="https://api.visitorbadge.io/api/visitors?path=BamaCharanChhandogi52%2FFitFlex%20&countColor=%23263759&style=flat" alt="Visitors" />
     <img src="https://img.shields.io/github/forks/BamaCharanChhandogi/GitFinder" alt="GitHub forks" />
     <img src="https://img.shields.io/github/stars/BamaCharanChhandogi/GitFinder" alt="GitHub Repo stars" />
     <img src="https://img.shields.io/github/contributors/BamaCharanChhandogi/GitFinder" alt="GitHub contributors" />
@@ -53,8 +53,8 @@
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="60" height="60" style="margin: 0 80px;" /> 
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" width="60" height="60" style="margin: 0 80px;" /> 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI" width="60" height="60" style="margin: 0 80px;" />
-  <img src="https://vitejs.dev/logo.svg" alt="Vite" width="60" height="60" style="margin: 0 80px;" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="taiwindcss" width="60" height="60" style="margin: 0 80px;" />
+
 </p>
 
 ## Features
