@@ -1,5 +1,9 @@
-# <p align="center">Git-Finder</p>
 
+# <p align="center">FITFLEX</p>
+  
+<p align="center">
+  <img src="./src/assets/ReadMeAssests/screenShorts/Homepage.png/" alt="FITFLEX Poster" />
+</p>
 
 <div align="center">
   <p>
@@ -8,23 +12,23 @@
     </a>
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs Welcome" />
     <img src="https://api.visitorbadge.io/api/visitors?path=Open-Code-Crafters52%2FFitFlex%20&countColor=%23263759&style=flat" alt="Visitors" />
-    <img src="https://img.shields.io/github/forks/BamaCharanChhandogi/GitFinder" alt="GitHub forks" />
-    <img src="https://img.shields.io/github/stars/BamaCharanChhandogi/GitFinder" alt="GitHub Repo stars" />
-    <img src="https://img.shields.io/github/contributors/BamaCharanChhandogi/GitFinder" alt="GitHub contributors" />
-    <img src="https://img.shields.io/github/last-commit/BamaCharanChhandogi/GitFinder" alt="GitHub last commit" />
-    <img src="https://img.shields.io/github/repo-size/BamaCharanChhandogi/GitFinder" alt="GitHub repo size" />
-    <img src="https://img.shields.io/github/license/BamaCharanChhandogi/GitFinder" alt="GitHub license" />
-    <img src="https://img.shields.io/github/issues/BamaCharanChhandogi/GitFinder" alt="GitHub issues" />
-    <img src="https://img.shields.io/github/issues-closed-raw/BamaCharanChhandogi/GitFinder" alt="GitHub closed issues" />
-    <img src="https://img.shields.io/github/issues-pr/BamaCharanChhandogi/GitFinder" alt="GitHub pull requests" />
-    <img src="https://img.shields.io/github/issues-pr-closed/BamaCharanChhandogi/GitFinder" alt="GitHub closed pull requests" />
+    <img src="https://img.shields.io/github/forks/Open-Code-Crafters/FitFlex" alt="GitHub forks" />
+    <img src="https://img.shields.io/github/stars/Open-Code-Crafters/FitFlex" alt="GitHub Repo stars" />
+    <img src="https://img.shields.io/github/contributors/Open-Code-Crafters/FitFlex" alt="GitHub contributors" />
+    <img src="https://img.shields.io/github/last-commit/Open-Code-Crafters/FitFlex" alt="GitHub last commit" />
+    <img src="https://img.shields.io/github/repo-size/Open-Code-Crafters/FitFlex" alt="GitHub repo size" />
+    <img src="https://img.shields.io/github/license/Open-Code-Crafters/FitFlex" alt="GitHub license" />
+    <img src="https://img.shields.io/github/issues/Open-Code-Crafters/FitFlex" alt="GitHub issues" />
+    <img src="https://img.shields.io/github/issues-closed-raw/Open-Code-Crafters/FitFlex" alt="GitHub closed issues" />
+    <img src="https://img.shields.io/github/issues-pr/Open-Code-Crafters/FitFlex" alt="GitHub pull requests" />
+    <img src="https://img.shields.io/github/issues-pr-closed/Open-Code-Crafters/FitFlex" alt="GitHub closed pull requests" />
   </p>
 </div>
 
 <div>
   <h2>Table of Contents</h2>
   <ul>
-    <li><a href="#about-fitflex">About GitFinder</a></li>
+    <li><a href="#about-fitflex">About FITFLEX</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#what-can-you-contribute">What can you contribute?</a></li>
     <li><a href="#how-to-contribute">How to contribute?</a></li>
@@ -37,12 +41,12 @@
 
 <h3> This project is now OFFICIALLY accepted for</h3>
 
-  <img src="./src/assets/ReadMeAssests/GSSoC-Ext.png/" alt="GSSOC-EXT" width="100%"  style="vertical-align: middle; margin-right: 10px;" />
-  <img src="./src/assets/ReadMeAssests/Hacktoberfest.png/" alt="HACKTOBERFEST" width="100%"  style="vertical-align: middle; margin-right: 10px;" />
+  <img src="./src/assets/ReadMeAssests/screenShorts/GSSoC-Ext.png/" alt="GSSOC-EXT" width="100%"  style="vertical-align: middle; margin-right: 10px;" />
+  <img src="./src/assets/ReadMeAssests/screenShorts/Hacktoberfest.png/" alt="HACKTOBERFEST" width="100%"  style="vertical-align: middle; margin-right: 10px;" />
 
 
-  <h2 id="about-fitflex">About Git-Finder</h2>
- GitHub Finder is a social platform that leverages GitHub authentication to provide users with a space to share their thoughts, ideas, and insights with the developer community. Users can post updates, interact with others, and explore GitHub profiles of fellow users.
+  <h2 id="about-fitflex">About FITFLEX</h2>
+FitFlex is a fitness and weight loss website that offers daily, structured workout plans for a set period. Users can follow day-wise exercises tailored to their goals, whether it’s for weight loss, muscle gain, or general fitness. FitFlex provides a simple, user-friendly interface to help track progress and stay consistent throughout the fitness journey.
 
 # Tech-Stack
 
@@ -53,62 +57,6 @@
   <img src="https://vitejs.dev/logo.svg" alt="Vite" width="60" height="60" style="margin: 0 80px;" />
 </p>
 
-## Features
-
-<p align="center">
-  <ol>
-     <li>GitHub Authentication
-       <ul>
-        <li>Users can log in securely using their GitHub credentials.</li>
-        <li>OAuth integration ensures a seamless and secure authentication process.</li>
-       </ul>
-     </li>
-       <li>Post Thoughts
-       <ul>
-        <li>Share your latest discoveries, thoughts, or challenges with the community.</li>
-        <li>Post updates in a format similar to popular social media platforms.</li>
-       </ul>
-     </li>
-      <li>Explore GitHub Profiles
-       <ul>
-        <li>Search for other GitHub users and explore their profiles.</li>
-        <li>View GitHub contribution graphs to understand their coding activity over time.</li>
-        <li> Explore repositories and projects associated with each user.</li>
-       </ul>
-     </li>
-      <li>Connect with Developers
-       <ul>
-        <li>Follow other GitHub users to stay updated on their activities.</li>
-        <li> Like, comment, and engage with posts to foster a vibrant developer community.</li>
-        <li> Explore repositories and projects associated with each user.</li>
-       </ul>
-     </li>
-     
-Whether you're looking to build your professional network, seek feedback on projects, or simply stay in touch with fellow coders, GitHub Finder creates an engaging space for developers of all levels.
-
-  </ol>
-
-</p>
-
-
-- 
-- 
-
-### 2. 
-
-- 
-- 
-
-### 3. Explore GitHub Profiles
-
-- 
-- 
--
-
-### 4. 
-
-- 
--
 
 
 
@@ -186,7 +134,7 @@ cd FitFlex
 **4.** Set upstream command:
 
 ```bash
-git remote add upstream https://github.com/BamaCharanChhandogi/GitFinder
+git remote add upstream https://github.com/Open-Code-Crafters/FitFlex
 ```
 
 **5.** Create a new branch:
@@ -251,10 +199,10 @@ git push origin YourBranchName
 <h2 id="project-contributors">Project Contributors</h2>
 
 <p align ="center">
-  <img src="https://api.vaunt.dev/v1/github/entities/BamaCharanChhandogi/repositories/GitFinder/contributors?format=svg&limit=54" width="600" height= "250" />
+  <img src="https://api.vaunt.dev/v1/github/entities/Open-Code-Crafters/repositories/FitFlex/contributors?format=svg&limit=54" width="600" height= "250" />
 </p>
 <div align="center">
-<a  href="https://github.com/BamaCharanChhandogi/GitFinder/graphs/contributors">
+<a  href="https://github.com/Open-Code-Crafters/FitFlex/graphs/contributors">
   <img align="center" src="https://contrib.rocks/image?max=100&repo=Open-Code-Crafters/FitFlex" />
 </a> 
 
@@ -273,5 +221,4 @@ Show some ❤️&nbsp; by giving <img src="https://imgur.com/o7ncZFp.jpg" height
 </p>
 
 <p align="right"><a href="#top"><img src="https://img.shields.io/badge/Move%20to%20top-Blue?style=plastic" alt="Back To Top"></a></p>
-
 
