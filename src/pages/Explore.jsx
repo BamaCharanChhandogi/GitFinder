@@ -7,14 +7,15 @@ import RepoInfo from "../Components/RepoInfo";
 import Github from "../Components/Github";
 
 function Explore() {
-  const [searchip, setSearchIp] = useState("");
-  const [user, setUser] = useState("");
+  const [searchIp, setSearchIp] = useState("");
+  const [user, setUser] = useState(null);
   const [repo, setRepo] = useState([]);
-  const [repoload, setRepoload] = useState(false);
-  // let value;
+  const [repoLoad, setRepoLoad] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchip == "") {
+    if (searchIp.trim() === "") {
       alert("Please enter a username");
       return;
     }
@@ -22,9 +23,10 @@ function Explore() {
     fetchRepo();
     setSearchIp("");
   };
+
   const fetchData = async () => {
     try {
-      const trimmed = searchip.trim();
+      const trimmed = searchIp.trim();
       const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${trimmed}`;
       const response = await fetch(endpoint, {
@@ -32,17 +34,25 @@ function Explore() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+
+      if (!response.ok) {
+        throw new Error("User not found. Please check the username.");
+      }
+
       const data = await response.json();
       setUser(data);
+      setErrorMessage(""); // Clear any previous error messages
     } catch (error) {
       console.log(error);
-      alert("Error: " + error.message);
+      setUser(null); // Reset user state on error
+      setErrorMessage(error.message); // Set error message
     }
   };
 
   const fetchRepo = async () => {
+    setRepo([]);
     try {
-      const trimmed = searchip.trim();
+      const trimmed = searchIp.trim();
       const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
       const endpoint = `https://api.github.com/users/${trimmed}/repos`;
       const response = await fetch(endpoint, {
@@ -50,11 +60,16 @@ function Explore() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+
+      if (!response.ok) {
+        throw new Error("Unable to fetch repositories.");
+      }
+
       const data = await response.json();
       setRepo(data);
     } catch (error) {
-      console.log(error);
-      alert("Error: " + error.message);
+     console.log(error);
+      // alert("Error: " + error.message);
     }
   };
 
@@ -71,18 +86,23 @@ function Explore() {
               <input
                 className="h-12 w-full md:w-3/5 m-1 p-2 md:p-3 rounded-xl bg-blue-400 bg-opacity-10 text-slate-50"
                 placeholder="Find your peers here..."
-                value={searchip}
+                value={searchIp}
                 onChange={(e) => setSearchIp(e.target.value)}
-              ></input>
+              />
               <button type="submit">
                 <BiSearchAlt className="m-3 w-8 h-8 text-white hover:text-blue-200" />
               </button>
             </form>
-            {!user && (
+            {errorMessage && (
+              <div className="text-red-500 text-center mt-4">
+                {errorMessage}
+              </div>
+            )}
+            {!user && !errorMessage && (
               <div className="flex justify-center mt-5">
                 <img
                   src="https://media.giphy.com/media/4Zd5CCT47enl32Sx3P/giphy.gif"
-                  className=" rounded-lg w-4/6"
+                  className="rounded-lg w-4/6"
                   alt=""
                 />
               </div>
@@ -111,24 +131,16 @@ function Explore() {
             )}
             {user && (
               <>
-                {" "}
-                <div className="border-[1px]  border-slate-500 w-[96%] mx-auto"></div>
-                <div
-                  onClick={() => {
-                    setRepoload(!repoload);
-                  }}
-                >
+                <div className="border-[1px] border-slate-500 w-[96%] mx-auto"></div>
+                <div onClick={() => setRepoLoad(!repoLoad)}>
                   <FaArrowDown className="ml-auto text-2xl mt-[-3px] text-slate-500 cursor-pointer" />
                 </div>
               </>
             )}
             {repo.map((repos) =>
-              !repoload || repos.fork ? (
-                ""
-              ) : (
-                <div className="transition-transform">
+              !repoLoad || repos.fork ? null : (
+                <div key={repos.id} className="transition-transform">
                   <RepoInfo
-                    key={repos.id}
                     name={repos.name}
                     desc={repos.description}
                     url={repos.html_url}
@@ -146,4 +158,5 @@ function Explore() {
     </>
   );
 }
+
 export default Explore;
