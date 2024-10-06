@@ -68,7 +68,7 @@ function Explore() {
       const data = await response.json();
       setRepo(data);
     } catch (error) {
-      console.log(error);
+     console.log(error);
       // alert("Error: " + error.message);
     }
   };
@@ -101,9 +101,8 @@ function Explore() {
             {!user && !errorMessage && (
               <div className="flex justify-center mt-5">
                 <img
-                  src="https://media4.giphy.com/media/GQeuGKAkinVSw/giphy.gif?cid=6c09b952zqo2zhu0qdivppzsxx7q895hmszwazfuvlaybx8f&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
-                  className="rounded-lg"
-                  style={{ width: "700px", height: "394px" }}
+                  src="https://media.giphy.com/media/4Zd5CCT47enl32Sx3P/giphy.gif"
+                  className="rounded-lg w-4/6"
                   alt=""
                 />
               </div>
