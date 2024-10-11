@@ -1,7 +1,7 @@
 # <p align="center">Git-Finder</p>
 
 <p align="center">
-  <img src="./src/assets/ReadMeAssests/Login.png/" alt="FITFLEX Poster" />
+  <img src="./src/assets/ReadMeAssests/Login.png/" alt="GitFinder Poster" />
 </p>
 
 
@@ -112,11 +112,11 @@ Whether you're looking to build your professional network, seek feedback on proj
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Open-Code-Crafters/FitFlex.git
+   git clone https://github.com/Open-Code-Crafters/GitFinder.git
    ```
 2. **Navigate to the project directory**:
     ```bash
-   cd FitFlex
+   cd GitFinder
    ```
   
 3. **Install Dependencies**:
@@ -138,18 +138,18 @@ Move detailed steps to a new `CONTRIBUTING.md` file and link to it:
 <h2 id="how-to-make-a-pull-request">How to make a Pull Request?</h2>
 
 
-**1.** Start by forking the [**FITFLEX**](https://github.com/Open-Code-Crafters/FitFlex) repository. Click on the <a href="https://github.com/Open-Code-Crafters/FitFlex/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+**1.** Start by forking the [**GitFinder**](https://github.com/Open-Code-Crafters/GitFinder) repository. Click on the <a href="https://github.com/Open-Code-Crafters/GitFinder/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
 
 **2.** Clone your forked repository:
 
 ```bash
-git clone https://github.com/<your-github-username>/FitFlex
+git clone https://github.com/<your-github-username>/GitFinder
 ```
 
 **3.** Navigate to the new project directory:
 
 ```bash
-cd FitFlex
+cd GitFinder
 ```
 
 **4.** Set upstream command:
