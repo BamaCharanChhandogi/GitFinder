@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import db from '../../firebase';
 
-function BlogPost({ id, title, content, author, timestamp, likes, comments }) {
+function BlogPost({ id, title, content, author, timestamp, likes, comments, likedBy }) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
+  const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState('');
+  const currentUser = document.cookie; // Assuming cookie contains username
+
+  useEffect(() => {
+    setLiked(likedUsers.includes(currentUser));
+  }, [likedUsers, currentUser]);
 
   const handleLike = () => {
+    const newLikedUsers = liked
+      ? likedUsers.filter(user => user !== currentUser)
+      : [...likedUsers, currentUser];
+    
+    const newLikeCount = newLikedUsers.length;
+    
     setLiked(!liked);
-    const newLikeCount = liked ? likeCount - 1 : likeCount + 1;
     setLikeCount(newLikeCount);
-    db.collection('blogPosts').doc(id).update({ likes: newLikeCount });
+    setLikedUsers(newLikedUsers);
+    
+    db.collection('blogPosts').doc(id).update({ 
+      likes: newLikeCount,
+      likedBy: newLikedUsers
+    });
   };
 
   const handleAddComment = () => {
     if (newComment.trim() !== '') {
-      const updatedComments = [...comments, { author: document.cookie, content: newComment }];
+      const updatedComments = [...comments, { author: currentUser, content: newComment }];
       db.collection('blogPosts').doc(id).update({ comments: updatedComments });
       setNewComment('');
     }
@@ -37,7 +53,6 @@ function BlogPost({ id, title, content, author, timestamp, likes, comments }) {
         on {formattedDate}
       </div>
 
-      {/* Replace the plain text content with dangerouslySetInnerHTML */}
       <div className="mb-4 prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
       <div className="flex items-center justify-between">
         <div className="flex items-center">
@@ -54,8 +69,11 @@ function BlogPost({ id, title, content, author, timestamp, likes, comments }) {
         <div className="mt-4">
           {comments.map((comment, index) => (
             <div key={index} className="bg-gray-800 rounded p-2 mb-2">
-              <div className="text-sm text-gray-400"> <a href={`https://gitfinder-psi.vercel.app/profile/${author}`} className=" mx-1 hover:underline">
-            {comment.author}</a> </div>
+              <div className="text-sm text-gray-400">
+                <a href={`https://gitfinder-psi.vercel.app/profile/${comment.author}`} className="mx-1 hover:underline">
+                  {comment.author}
+                </a>
+              </div>
               <p>{comment.content}</p>
             </div>
           ))}

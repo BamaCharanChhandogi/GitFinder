@@ -20,12 +20,14 @@ function CreateBlogPost() {
         author: document.cookie, // Assuming cookie contains username
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         likes: 0,
-        comments: []
+        comments: [],
+        likedBy: []
       });
       setTitle('');
       setContent('');
     }
   };
+  
 
   const modules = {
     toolbar: [
