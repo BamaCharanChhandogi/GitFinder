@@ -6,6 +6,45 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
 
 
+const users1 = [
+  {
+    id: 1,
+    name: "Alice Johnson",
+    username: "alice_j",
+    logo: "https://randomuser.me/api/portraits/women/1.jpg",
+  },
+  {
+    id: 2,
+    name: "Bob Smith",
+    username: "bob_smith",
+    logo: "https://randomuser.me/api/portraits/men/1.jpg",
+  },
+  {
+    id: 3,
+    name: "Charlie Brown",
+    username: "charlie_b",
+    logo: "https://randomuser.me/api/portraits/men/2.jpg",
+  },
+  {
+    id: 4,
+    name: "Diana Prince",
+    username: "diana_p",
+    logo: "https://randomuser.me/api/portraits/women/2.jpg",
+  },
+  {
+    id: 5,
+    name: "Edward Kenway",
+    username: "edward_k",
+    logo: "https://randomuser.me/api/portraits/men/3.jpg",
+  },
+  {
+    id: 6,
+    name: "Fiona Green",
+    username: "fiona_g",
+    logo: "https://randomuser.me/api/portraits/women/3.jpg",
+  },
+];
+
 function UserList() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -40,24 +79,33 @@ function UserList() {
     }
   }, [currentUser]);
 
-  const startConversation = async (otherUsername) => {
+  // const startConversation = async (otherUsername) => {
+  //   if (!currentUser) return;
+  
+  //   const conversationId = [currentUser.uid, otherUsername].sort().join('_');
+    
+  //   try {
+  //     await db.collection('conversations').doc(conversationId).set({
+  //       participants: [currentUser.uid, otherUsername],
+  //       lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+  //     }, { merge: true });
+  
+  //     navigate(`/chat/${conversationId}`);
+  //   } catch (error) {
+  //     console.error("Error starting conversation:", error);
+  //   }
+  // };
+
+  const startConversation = (otherUsername) => {
     if (!currentUser) return;
   
+    // Create a conversation ID based on the user and the selected username
     const conversationId = [currentUser.uid, otherUsername].sort().join('_');
     
-    try {
-      await db.collection('conversations').doc(conversationId).set({
-        participants: [currentUser.uid, otherUsername],
-        lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-      }, { merge: true });
-  
-      navigate(`/chat/${conversationId}`);
-    } catch (error) {
-      console.error("Error starting conversation:", error);
-    }
+    // Navigate to the chat page with the conversation ID
+    navigate(`/chat/${conversationId}`);
   };
-
-
+  
 
   return (
     <div className="w-full font-manrope tracking-wide flex flex-row bg-[#1B2430] md:justify-end min-h-screen bg-cover">
@@ -65,7 +113,7 @@ function UserList() {
     <div className="md:w-4/6  w-full md:ml-20 mx-2 h-auto bg-opacity-20 backdrop-blur-lg rounded-2xl flex flex-col my-3 p-6">
       <h2 className="text-2xl font-bold mb-4 text-white">Users</h2>
       <ul>
-        {users.map(user => (
+        {users1.map(user => (
           <li key={user.id} className="mb-2 flex items-center bg-slate-700 p-3 rounded-lg">
             <img src={user.logo} alt={user.name} className="w-10 h-10 rounded-full mr-2" />
             <span className="text-white">{user.name}</span>

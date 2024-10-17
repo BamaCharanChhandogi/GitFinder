@@ -9,7 +9,7 @@ function Chat() {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [chatUser, setChatUser] = useState(null); // New state for the chat user
+  const [chatUser, setChatUser] = useState({"displayName":"Loky","username":"jaat"}); // New state for the chat user
   const { conversationId } = useParams();
   const navigate = useNavigate();
 
@@ -40,15 +40,14 @@ function Chat() {
           console.error("Error fetching messages:", error);
         }
       );
-      
 
     // Fetch the other user's details for the header
     const fetchChatUser = async () => {
       const conversation = await db.collection("conversations").doc(conversationId).get();
       if (conversation.exists) {
         const participants = conversation.data().participants;
-        const otherUserId = participants.find((id) => id !== user.uid);   
-        const userDoc = await db.collection("users").doc(otherUserId).get();
+        const otherUserId = participants.find((id) => id !== user.uid);
+        const userDoc = await db.collection("users").doc(otherUserId).get(); // Assuming you have a 'users' collection
         if (userDoc.exists) {
           setChatUser(userDoc.data());
         }
@@ -116,7 +115,7 @@ function Chat() {
           {chatUser && (
             <div className="flex items-center gap-3">
               <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="userImage" className="h-10 w-10 rounded-full"/>
-              <h2 className="text-2xl text-white">{chatUser.name}</h2>
+              <h2 className="text-2xl text-white">{chatUser.displayName}</h2>
             </div>
           )}
         </div>
