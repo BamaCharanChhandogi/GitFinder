@@ -1,6 +1,7 @@
 import HomeImg from '../../assets/Home.jpeg';
 
 export default function Hero(props) {
+  
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Background image */}
