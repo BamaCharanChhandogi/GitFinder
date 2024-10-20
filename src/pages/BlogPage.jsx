@@ -17,10 +17,8 @@ function Blog() {
       });
   }, []);
   return (
-    <div className="flex gap-64 flex-col justify-center md:flex-row bg-[#1B2430] h-auto min-h-screen md:px-40">
-      <div>
+    <div className="flex gap-64 flex-row justify-center md:flex-row bg-[#1B2430] h-auto min-h-screen md:px-40">
         <Sidebar />
-      </div>
       <div className="md:w-7/12 m-3 ml-0 md:m-3 text-white px-4 py-1 rounded-2xl md:ml-14">
         <CreateBlogPost />
         {blogPosts.map(({ id, data }) => (
