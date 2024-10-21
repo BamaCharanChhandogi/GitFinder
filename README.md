@@ -84,19 +84,19 @@ Whether you're looking to build your professional network, seek feedback on proj
 
 <h2 id="what-can-you-contribute">What can you contribute?</h2>
 
-- Find All the details in [**CONTRIBUTING.md**](https://github.com/Open-Code-Crafters/FitFlex/blob/main/CONTRIBUTING.md) before contributing
-- Please follow guidelines in [**Code_of_Conduct.md**](https://github.com/Open-Code-Crafters/FitFlex/blob/main/CODE_OF_CONDUCT.md)
+- Find All the details in [**CONTRIBUTING.md**](https://github.com/BamaCharanChhandogi/GitFinder/blob/main/CONTRIBUTING.md) before contributing
+- Please follow guidelines in [**Code_of_Conduct.md**](https://github.com/BamaCharanChhandogi/GitFinder/blob/main/Code_Of_Conduct.md)
 
 <h2 id="how-to-contribute">How to contribute?</h2>
 
 - Drop a Star in this repo
-- Take a look at the existing [Issues](https://github.com/Open-Code-Crafters/FitFlex/issues).
+- Take a look at the existing [Issues](https://github.com/BamaCharanChhandogi/GitFinder/issues).
 - Fork the Repo create a branch for any issue that you are working on and commit your work.
 - At first raise an issue in which you want to work
 - **Please do not make more than 2 issues at a time , Once your PR have been merged only then go for the next issue**
 - **Then when you are get assigned only then work on that issue & make a PR**
 - Please try to make a separate branch in your fork in case of PR
-- Create a [**Pull Request**](https://github.com/Open-Code-Crafters/FitFlex/pulls), which will be promptly reviewed and given suggestions for improvements by the community.
+- Create a [**Pull Request**](https://github.com/BamaCharanChhandogi/GitFinder/pulls), which will be promptly reviewed and given suggestions for improvements by the community.
 - **REMINDER: Commit inside **the `Projects`** Folder**
 - Find the already Existing Projects in the `Projects` Folder
 - Add screenshots or video prototypes to your Pull Request to help us understand the effects of the changes that are included in your commits.
@@ -112,7 +112,7 @@ Whether you're looking to build your professional network, seek feedback on proj
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Open-Code-Crafters/GitFinder.git
+   git clone https://github.com/<your-github-username>/GitFinder.git
    ```
 2. **Navigate to the project directory**:
     ```bash
@@ -138,7 +138,7 @@ Move detailed steps to a new `CONTRIBUTING.md` file and link to it:
 <h2 id="how-to-make-a-pull-request">How to make a Pull Request?</h2>
 
 
-**1.** Start by forking the [**GitFinder**](https://github.com/Open-Code-Crafters/GitFinder) repository. Click on the <a href="https://github.com/Open-Code-Crafters/GitFinder/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+**1.** Start by forking the [**GitFinder**](https://github.com/BamaCharanChhandogi/GitFinder) repository. Click on the <a href="https://github.com/Open-Code-Crafters/GitFinder/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
 
 **2.** Clone your forked repository:
 
