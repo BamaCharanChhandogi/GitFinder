@@ -13,21 +13,11 @@ import About from "./pages/About";
 import ProfilePage from "./pages/ProfilePage";
 import Chat from "./pages/Chat";
 import UserList from "./pages/UserList";
+import Notifications from "./pages/Notifications";  // Import Notifications component
 
 export default function App() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       navigate("/home");
-  //     }
-  //   });
 
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
@@ -42,6 +32,7 @@ export default function App() {
         console.log(errorCode + errorMessage);
       });
   }
+
   return (
     <div>
       <Routes>
@@ -49,7 +40,7 @@ export default function App() {
           path="/"
           element={<Landing authenticateUser={authenticateUser} />}
         />
-         <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
@@ -59,7 +50,12 @@ export default function App() {
         <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/chat" element={<UserList />} />
         <Route path="/chat/:conversationId" element={<Chat />} />
-        {/* <Route
+        
+        {/* Add notifications route */}
+        <Route path="/notifications" element={<Notifications />} />
+
+        {/* Optionally, protect routes that require authentication */}
+        <Route
           path="/home"
           element={auth.currentUser ? <Home /> : <Navigate to="/" />}
         />
@@ -90,7 +86,7 @@ export default function App() {
         <Route
           path="/profile/:username"
           element={auth.currentUser ? <ProfilePage /> : <Navigate to="/" />}
-        /> */}
+        />
       </Routes>
     </div>
   );
