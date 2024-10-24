@@ -23,12 +23,13 @@ export default function Blog() {
                   </span>
                 </div>
                 <div className="text-lg text-slate-400 md:w-8/12 w-11/12 my-10">
-                  GitFinder is an outright social-media platform for programmers,
+                  {/* GitFinder is an outright social-media platform for programmers,
                   where you can showcase your projects hosted on GitHub in a
                   beautiful way. GitFinder facilitates connecting with fellow
                   coders, making posts about your project or repository, sharing
                   projects ideas, checking what fellow coders are creating, and
-                  much more!
+                  much more! */}
+                  GitFinder is the ultimate social platform for programmers to showcase their GitHub projects in a visually stunning way. It allows you to connect with fellow developers, share posts about your repositories, explore new project ideas, and see what others in the coding community are building. Whether you're sharing your latest creation or discovering new inspiration, GitFinder is your hub for all things code!
                   <div
                     className={`md:hidden block w-full h-auto text-blue-800 hover:text-blue-400 text-lg font-semibold bg-blue-100
                        bg-opacity-90 hover:bg-black transition-all duration-700 ease-out rounded-xl my-10 p-3 hover:cursor-pointer`}
@@ -167,7 +168,7 @@ export default function Blog() {
                       className={`md:hidden block w-full h-auto text-blue-800 hover:text-blue-400 text-lg font-semibold bg-blue-100 bg-opacity-90 hover:bg-black transition-all duration-700 ease-out rounded-xl my-10 p-3 hover:cursor-pointer`}
                       onClick={() => setContent("whoweare")}
                     >
-                      <p>Check Who we are..</p>
+                      <p>Check Who we are...</p>
                     </div>
                   </div>
                 </div>
