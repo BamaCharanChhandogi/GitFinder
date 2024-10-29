@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Octokit } from '@octokit/rest'; // Import Octokit
+import { Octokit } from '@octokit/rest'; 
 import Sidebar from "../Components/Sidebar";
 
-const octokit = new Octokit(); // Create an instance of Octokit
+const octokit = new Octokit(); 
 
 const GoodFirstIssues = () => {
     const [issues, setIssues] = useState([]);
@@ -20,7 +20,7 @@ const GoodFirstIssues = () => {
                 page: pageNumber,
             });
             setIssues(response.data.items);
-            setTotalPages(Math.ceil(response.data.total_count / 15)); // Calculate total pages
+            setTotalPages(Math.ceil(response.data.total_count / 15)); 
         } catch (error) {
             setError("Error fetching issues: " + error.message);
         } finally {
