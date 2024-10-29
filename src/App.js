@@ -13,6 +13,7 @@ import About from "./pages/About";
 import ProfilePage from "./pages/ProfilePage";
 import Chat from "./pages/Chat";
 import UserList from "./pages/UserList";
+import GoodFirstIssues from "./pages/GoodFirstIssues";
 
 export default function App() {
   const navigate = useNavigate();
@@ -59,38 +60,7 @@ export default function App() {
         <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/chat" element={<UserList />} />
         <Route path="/chat/:conversationId" element={<Chat />} />
-        {/* <Route
-          path="/home"
-          element={auth.currentUser ? <Home /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={auth.currentUser ? <Profile /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/messages"
-          element={auth.currentUser ? <Message /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/notifications"
-          element={auth.currentUser ? <Notifications /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/explore"
-          element={auth.currentUser ? <Explore /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/contact"
-          element={auth.currentUser ? <Contact /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/about"
-          element={auth.currentUser ? <About /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile/:username"
-          element={auth.currentUser ? <ProfilePage /> : <Navigate to="/" />}
-        /> */}
+        <Route path="/good-first-issues" element={<GoodFirstIssues />} />
       </Routes>
     </div>
   );
