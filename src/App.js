@@ -14,20 +14,12 @@ import ProfilePage from "./pages/ProfilePage";
 import Chat from "./pages/Chat";
 import UserList from "./pages/UserList";
 
+// Import the ScrollToTopButton component
+import ScrollToTopButton from './ScrollToTopButton'; // adjust the path if needed
+
 export default function App() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       navigate("/home");
-  //     }
-  //   });
 
-  //   // Clean up the subscription when the component unmounts
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
   function authenticateUser() {
     auth
       .signInWithPopup(provider)
@@ -42,14 +34,16 @@ export default function App() {
         console.log(errorCode + errorMessage);
       });
   }
+
   return (
     <div>
+      {/* Include the Routes */}
       <Routes>
         <Route
           path="/"
           element={<Landing authenticateUser={authenticateUser} />}
         />
-         <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Message />} />
         <Route path="/blog" element={<BlogPost />} />
@@ -59,39 +53,10 @@ export default function App() {
         <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/chat" element={<UserList />} />
         <Route path="/chat/:conversationId" element={<Chat />} />
-        {/* <Route
-          path="/home"
-          element={auth.currentUser ? <Home /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={auth.currentUser ? <Profile /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/messages"
-          element={auth.currentUser ? <Message /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/notifications"
-          element={auth.currentUser ? <Notifications /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/explore"
-          element={auth.currentUser ? <Explore /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/contact"
-          element={auth.currentUser ? <Contact /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/about"
-          element={auth.currentUser ? <About /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile/:username"
-          element={auth.currentUser ? <ProfilePage /> : <Navigate to="/" />}
-        /> */}
       </Routes>
+
+      {/* ScrollToTopButton component is added here */}
+      <ScrollToTopButton />
     </div>
   );
 }
