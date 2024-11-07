@@ -24,6 +24,7 @@ export default function Home() {
     const data = await response.json();
     return setUserData(data);
   };
+  
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -39,7 +40,6 @@ export default function Home() {
         navigate("/");
       }
     });
-  
     return () => unsubscribe();
   }, []);
 
@@ -52,58 +52,57 @@ export default function Home() {
       setLoading(false);
     }, 1000);
   }, []);
+
   return (
-    <>
-      <div className="flex  gap-64 flex-row justify-center md:flex-row bg-[#1B2430] min-h-screen md:px-40">
-          <Sidebar />
-        <div className=" md:w-7/12 m-3 ml-0 md:m-3 text-white px-4 py-1 rounded-2xl md:ml-14">
-          <CreatePost
-            avatar={userData.avatar_url}
-            login={userData.login}
-            name={userData.name}
-            bio={userData.bio}
-          />
-          {loading ? (
-            <div className="w-full flex justify-center items-center animate-spin h-96">
-              <VscLoading className="w-8 h-8" />
-            </div>
-          ) : (
-            post.map(
-              ({
-                id,
-                data: {
-                  logo,
-                  name,
-                  usernames,
-                  bio,
-                  like,
-                  likedBy,
-                  commentCnt,
-                  commentObj,
-                  description,
-                },
-              }) => {
-                return (
-                  <Post
-                    key={id}
-                    id={id}
-                    logo={logo}
-                    name={name}
-                    username={usernames}
-                    like={like}
-                    likedBy={likedBy}
-                    commentCnt={commentCnt}
-                    commentObj={commentObj}
-                    bio={bio}
-                    description={description}
-                    width={"full"}
-                  />
-                );
-              }
-            )
-          )}
-        </div>
+    <div className="flex gap-64 flex-row justify-center md:flex-row bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen md:px-40 py-6">
+      <Sidebar />
+      <div className="md:w-7/12 mx-4 md:mx-8 text-white px-6 py-4 bg-gray-800 rounded-3xl shadow-lg transition-all transform hover:scale-105">
+        <CreatePost
+          avatar={userData.avatar_url}
+          login={userData.login}
+          name={userData.name}
+          bio={userData.bio}
+        />
+        {loading ? (
+          <div className="w-full flex justify-center items-center animate-spin h-96">
+            <VscLoading className="w-8 h-8 text-blue-400" />
+          </div>
+        ) : (
+          post.map(
+            ({
+              id,
+              data: {
+                logo,
+                name,
+                usernames,
+                bio,
+                like,
+                likedBy,
+                commentCnt,
+                commentObj,
+                description,
+              },
+            }) => {
+              return (
+                <Post
+                  key={id}
+                  id={id}
+                  logo={logo}
+                  name={name}
+                  username={usernames}
+                  like={like}
+                  likedBy={likedBy}
+                  commentCnt={commentCnt}
+                  commentObj={commentObj}
+                  bio={bio}
+                  description={description}
+                  width="full"
+                />
+              );
+            }
+          )
+        )}
       </div>
-    </>
+    </div>
   );
 }
