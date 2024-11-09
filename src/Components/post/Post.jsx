@@ -11,6 +11,8 @@ function Post(props) {
   const [likeCount, setLikeCount] = useState(props.like);
   const [likedBy, setLikedBy] = useState(props.likedBy || []);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(props.description);
   const cookie = document.cookie;
   const navigate = useNavigate();
 
@@ -19,7 +21,20 @@ function Post(props) {
   }, [likedBy, cookie]);
 
   const handleEdit = () => {
+    setIsEditing(true);
     setShowDropdown(!showDropdown);
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      await db.collection("posts").doc(props.id).update({
+        description : editedDescription,
+      });
+      setIsEditing(false);
+      console.log("Post updated successfully!");
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
   };
 
   const handleDelete = () => {
@@ -120,9 +135,25 @@ function Post(props) {
         </div>
       </div>
       <div className="flex flex-col py-4">
-        <p className="my-3 md:mb-2 md:mt-0 md:pl-2 md:pt-1 text-sm tracking-wide">
-          {props.description}
-        </p>
+      {isEditing ? (
+          <>
+            <textarea
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+              className="my-3 w-full bg-gray-700 rounded-md p-2 text-white"
+            ></textarea>
+            <button
+              onClick={handleSaveEdit}
+              className="bg-blue-500 text-white py-1 px-4 rounded-md mt-2 hover:bg-blue-600"
+            >
+              Save Changes
+            </button>
+          </>
+        ) : (
+          <p className="my-3 md:mb-2 md:mt-0 md:pl-2 md:pt-1 text-sm tracking-wide">
+            {props.description}
+          </p>
+        )}
         {props.image && (
           <img
             src={props.image}
