@@ -19,7 +19,12 @@ export default function Profile() {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const cookie = document.cookie;
+  function getGithubUsernameFromCookie() {
+    let cookies = document.cookie.split("; ");
+    let usernameCookie = cookies.find(cookie => !cookie.includes("=")); // Find standalone username
+    return usernameCookie ? usernameCookie.trim() : null;
+  }
+  const cookie = getGithubUsernameFromCookie();
 
   function githubSignout() {
     document.cookie = "";
@@ -36,9 +41,11 @@ export default function Profile() {
         }
       );
   }
+  
   const fetchData = async () => {
     try {
       const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
+      
       const endpoint = `https://api.github.com/users/${cookie}`;
       const response = await fetch(endpoint, {
         headers: {
