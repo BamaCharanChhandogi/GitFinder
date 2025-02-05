@@ -32,16 +32,24 @@ export default function App() {
     auth
       .signInWithPopup(provider)
       .then((userAuth) => {
-        const githubUsername = userAuth.additionalUserInfo.username;
+        let githubUsername = userAuth.additionalUserInfo.username;
+
+        // Clear existing cookies
+        document.cookie.split(";").forEach((c) => {
+            document.cookie = c.split("=")[0].trim() + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+
+        // Store only the GitHub username
         document.cookie = githubUsername;
+
+        console.log(document.cookie);
         navigate("/home");
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        console.log(error.code + error.message);
       });
-  }
+}
+
   return (
     <div>
       <Routes>
