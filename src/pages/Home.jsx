@@ -13,17 +13,32 @@ export default function Home() {
   const navigate = useNavigate();
 
   const cookie = document.cookie;
+  function getGithubUsernameFromCookie() {
+    let cookies = document.cookie.split("; ");
+    let usernameCookie = cookies.find(cookie => !cookie.includes("=")); // Find standalone username
+    return usernameCookie ? usernameCookie.trim() : null;
+}
+
   const fetchData = async () => {
     const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
-    const endpoint = `https://api.github.com/users/${cookie}`;
+    const githubUsername = getGithubUsernameFromCookie(); // Get only username
+
+    if (!githubUsername) {
+        console.error("GitHub username not found in cookies.");
+        return;
+    }
+
+    const endpoint = `https://api.github.com/users/${githubUsername}`;
     const response = await fetch(endpoint, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
     });
+
     const data = await response.json();
-    return setUserData(data);
-  };
+    setUserData(data);
+};
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
