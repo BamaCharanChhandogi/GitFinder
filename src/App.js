@@ -41,7 +41,7 @@ export default function App() {
         });
 
         // Store username with a proper key
-        document.cookie = `github_username=${githubUsername}; path=/;`;
+        document.cookie = githubUsername;
 
         console.log("Updated Cookie:", document.cookie);
         navigate("/home");

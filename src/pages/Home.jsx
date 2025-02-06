@@ -15,6 +15,7 @@ export default function Home() {
   const cookie = document.cookie;
   function getGithubUsernameFromCookie() {
     let cookies = document.cookie.split("; ");
+    
     let usernameCookie = cookies.find(cookie => !cookie.includes("=")); // Find standalone username
     return usernameCookie ? usernameCookie.trim() : null;
 }
