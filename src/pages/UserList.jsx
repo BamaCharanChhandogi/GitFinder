@@ -60,7 +60,7 @@ function UserList() {
     <div className="w-full font-manrope tracking-wide flex flex-row bg-[#1B2430] md:justify-end min-h-screen bg-cover">
     <Sidebar />
     <div className="md:w-4/6  w-full md:ml-20 mx-2 h-auto bg-opacity-20 backdrop-blur-lg rounded-2xl flex flex-col my-3 p-6">
-      <h2 className="text-2xl font-bold mb-4 text-white">Users</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">Users(Upcoming feature)</h2>
       <ul>
         {users.map(user => (
           <li key={user.id} className="mb-2 flex items-center bg-slate-700 p-3 rounded-lg">
